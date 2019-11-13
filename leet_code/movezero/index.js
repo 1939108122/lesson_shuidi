@@ -1,9 +1,9 @@
 // let movezero ;//undefined
-const moveZero =(nums) =>{
-    let notZeroArr = [];
+var moveZero = function (nums) {
+    var notZeroArr = [];
      ZeroArr = [];
-    let index =0;
-     for(let i=0; i<nums.length; i++)
+    var index =0;
+     for(var i=0; i<nums.length; i++)
 {
 
 if(nums[i]==0)

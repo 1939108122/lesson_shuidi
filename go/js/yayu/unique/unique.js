@@ -8,7 +8,6 @@
 //function 关键字没有,
 // es6 键头函数 （）=>{}
 let fn;
-
 console.log(typeof fn);//类型 undefined 未定
 fn=null;
 console.log(typeof fn);

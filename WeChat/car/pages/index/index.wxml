@@ -1,0 +1,14 @@
+<!-- swiper是小程序提供的组件，滑动了 -->
+<swiper class="section hero white" indicator-dots="{{true}}">
+<swiper-item wx:for="{{slides}}"> 
+    <image style="width:" src="{{item.image}}"/>
+    <view class="content centered">
+        <view class="sub-header">{{item.sub_header}}</view>
+        <view class="header">{{item.header}}</view>
+        <view class="description">{{item.description}}</view>
+        <view class="action">
+        <button class="button" bindtap="testDrive">预约驾驶</button>
+        <button class="button primary" bindtap="readMore" data-id="{{item.id}}">了解更多</button></view>
+    </view>
+</swiper-item>
+</swiper>

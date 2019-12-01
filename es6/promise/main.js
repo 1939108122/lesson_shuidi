@@ -1,4 +1,4 @@
-// const fs = require('fs');
+ const fs = require('fs');
 // fs.readFile('./a.txt',function(err,res){
 //     if(err)
 //     {
@@ -11,11 +11,11 @@
 function readFile() {
    
         const aFile = fs.readFileSync('a.txt');
-        console.log(aFile);
+        console.log(aFile.toString());
         const bFile = fs.readFileSync('b.txt');
-        console.log(aFile);
+        console.log(bFile.toString());
         const cFile = fs.readFileSync('c.txt');
-        console.log(aFile);
+        console.log(cFile.toString());
 
 }
-readFile;
+readFile();

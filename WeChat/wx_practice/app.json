@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/list/list",
+  "pages/partner/partner",
+  "pages/more/more"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "云训练营",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "red",
+    "selectedColor": "#13227a",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "image/icon-tab1.png",
+         "selectedIconPath": "image/icon-tab1-active.png",
+        "text": "微信"
+      },
+      {
+        "pagePath": "pages/list/list",
+        "iconPath": "image/icon-tab2.png",
+        "selectedIconPath": "image/icon-tab2-active.png",
+        "text": "通讯录"
+      },
+      {
+        "pagePath": "pages/partner/partner",
+        "iconPath": "image/icon-tab3.png",
+        "selectedIconPath": "image/icon-tab3-active.png",
+        "text": "发现"
+      },
+      {
+        "pagePath": "pages/more/more",
+        "iconPath": "image/icon-tab4.png",
+        "selectedIconPath": "image/icon-tab4-active.png",
+        "text": "我"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

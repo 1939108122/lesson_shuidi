@@ -1,4 +1,50 @@
+.container{
+    position:relative;
+    top: 188rpx;
+}
 image{
+  
     width: 750rpx;
-    height: 251rpx;
+    height: 260rpx;
+}
+.all{
+  height: 448rpx;
+  border: 2px solid green;
+}
+.a{
+   border-bottom: 1px solid #D6D6D6; 
+  height: 100rpx;
+  font-size: 13px;
+  display: flex;
+  flex-direction: row;
+
+}
+.b{
+   /* border: 2px solid green; */
+  height: 40rpx;
+  width: 170rpx;
+  margin-top: 30rpx;
+  margin-left: 30rpx;
+}
+.c{
+  height: 26rpx;
+  width: 26rpx;
+}
+.d{
+   /* border: 2px solid green; */
+  height: 40rpx;
+  width: 170rpx;
+  margin-top: 30rpx;
+  margin-left: 90rpx;
+}
+.e{
+   /* border: 2px solid green; */
+  height: 40rpx;
+  width: 170rpx;
+  margin-top: 30rpx;
+  margin-left: 90rpx;
+}
+.f{
+   border: 2px solid green;
+   height: 320rpx;
 }

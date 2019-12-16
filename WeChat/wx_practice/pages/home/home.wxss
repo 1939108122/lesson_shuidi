@@ -1,1 +1,9 @@
-/* pages/home/home.wxss */
+.a .b{
+  color:green
+}
+.a .c{
+  color: blue
+}
+.a{
+  color: red
+}

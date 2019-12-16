@@ -1,5 +1,17 @@
-<swiper indicator-dots="{{false}}" autoplay="{{true}}" interval="3000">
+<view>
+ <view class="all">
+<swiper  class="container" indicator-dots="{{false}}" autoplay="{{false}}" interval="3000">
 <swiper-item  wx:for="{{slides}}">
  <image src="{{item.image}}"/>
 </swiper-item>
 </swiper>
+ </view>
+  <view class="a">
+<view class="b"><image class="c" src="../../images/guarantee.png"></image> 正 品 保 障</view> 
+<view class="d"><image class="c" src="../../images/One by one inspection.png"></image> 逐 件 查 验</view>
+<view class="e"><image class="c" src="../../images/Multiple identification.png"></image> 多 重 鉴 别</view>
+   </view>
+   <view class="f"></view>
+</view>
+
+

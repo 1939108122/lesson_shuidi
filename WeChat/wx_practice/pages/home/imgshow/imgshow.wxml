@@ -1,0 +1,6 @@
+<view id="imgsection">
+  <view class="title">小程序显示图片</view>
+  <view class="imglist">
+    <image class="imgicon" mode = "widthFix" src="/image/icon-tab1.png"></image>
+  </view>
+</view>

@@ -1,0 +1,6 @@
+.imglist{
+  text-align: center;
+}
+.imglist .imgicon{
+  width: 100%
+}

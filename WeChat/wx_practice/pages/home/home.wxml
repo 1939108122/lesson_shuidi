@@ -1,1 +1,15 @@
-<view class = "a">带我走<view class="b">独居男子</view></view>
+<view class="event-list">
+    <navigator url="/pages/home/imgshow/imgshow" class="event-link">        
+        <view class="event-img">
+            <image mode="widthFix" src="https://hackwork.oss-cn-shanghai.aliyuncs.com/lesson/weapp/4/weapp.jpg"></image>
+        </view>
+        <view class="event-content">
+            <view class="event-title">零基础学会小程序开发</view>
+            <view class="event-desc">通过两天集中的学习，你会循序渐进的开发出一些具有实际应用场景的小程序。 </view>
+            <view class="event-box">
+                <view class="event-address">深圳南山</view>
+                <view class="event-time">2018年9月22日-23日</view>
+            </view>
+        </view>
+    </navigator>
+</view>

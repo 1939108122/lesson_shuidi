@@ -9,11 +9,11 @@ image{
 }
 .all{
   height: 448rpx;
-  border: 2px solid green;
+  /* border: 2px solid green; */
 }
 .a{
    border-bottom: 1px solid #D6D6D6; 
-  height: 100rpx;
+  height: 96rpx;
   font-size: 13px;
   display: flex;
   flex-direction: row;

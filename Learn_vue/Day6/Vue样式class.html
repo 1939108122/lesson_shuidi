@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Day1/code/lib/vue-2.4.0.js"></script>
+    <style>
+        .red{
+            color: red;
+        }
+        .thin{
+            font-weight: 200;
+        }
+        .active{
+            letter-spacing: 0.5em;
+        }
+        .italic{
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- <h1 :class="['red','thin','italic',flag? 'active':'']">这是一个大大的H1，大到你无法想象！</h1> -->
+        <!-- <h1 :class="['red','thin','italic',{'active':flag}]">这是一个大大的H1，大到你无法想象！</h1> -->
+        
+        <!-- 在为class 使用v-bind 绑定对象的时候 对象的属性是类名 对象的属性可带引号可不带 -->
+        <!-- <h1 :class="{red:true,italic:true,thin:true}">这是一个大大的H1，大到你无法想象！</h1> -->
+        <h1 :class="classobj">这是一个大大的H1，大到你无法想象！</h1>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                flag:false,
+                classobj:{red:true,italic:true,thin:true}
+            },
+            methods:{
+                
+            }
+        })
+    </script>
+</body>
+</html>

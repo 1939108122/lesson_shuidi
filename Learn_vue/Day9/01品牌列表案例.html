@@ -27,6 +27,10 @@
                     <label>
                         <input type="button" value="添加" class="btn btn-primary" @click="add">
                     </label>
+                    <label>
+                        搜索关键字:
+                        <input type="text" class="form-control" v-model="keywords">
+                    </label>
               </div>
         </div>
         
@@ -40,10 +44,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="item in list" :key="item.id">
+                <!-- 之前 v-for 中的数据都是直接从data上的 list数组直接渲染过来的 -->
+                <!-- 现在 我们自定义了一个search方法 同时 把所有的关键字通过传参的形式 传递给了search方法 -->
+                <!-- 在search方法中 通过执行 for循环  把所有符合索索关键字的数据 保存到一个新数组中
+                 -->
+                <tr v-for="item in search(keywords)" :key="item.id">
                     <td>{{ item.id }}</td>
                     <td>{{ item.name }}</td>
-                    <td>{{ item.ctime }}</td>
+                    <td>{{ item.ctime | dateFormat('') }}</td>
                     <td>
                         <a href="" @click.prevent = "del(item.id)">删除</a>
                     </td>
@@ -53,11 +61,29 @@
         
     </div>
     <script>
+        Vue.filter('dateFormat',function (dateStr,patten) {
+            var dt = new Date(dateStr)
+            var y = dt.getFullYear()
+            var m = dt.getMonth() + 1
+            var d = dt.getDate()
+            
+            if( patten.toLowerCase() === 'yyyy-mm-dd')
+            {
+                return`${y}-${m}-${d}`
+            }
+            else{
+                var hh = dt.getHours()
+                var mm = dt.getMinutes()
+                var ss = dt.getSeconds()
+                return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+            }
+        })
         var vm = new Vue({
             el:'#app',
             data:{
                 id:'',
                 name:'',
+                keywords:'',
                 list:[
                     {id: 1, name: '奔驰', ctime: new Date() },
                     {id: 2, name: '宝马', ctime: new Date() }
@@ -91,6 +117,26 @@
                     this.list.splice(index,1);
                     
                     
+            },
+            search(keywords)
+            {
+                // var newList = [];   
+                // this.list.forEach(item => {
+                //     if(item.name.indexOf(keywords) != -1)
+                //     {
+                //         newList.push(item);
+                //     }
+                // })
+                // return newList
+                // foreach（遍历不会停止直到遍历全部结束） some（return true结束） findIndex  filter find 这些都属于数组的新方法  
+                // 都会对数组的每一项进行遍历   
+                // es6中 为字符串提供了一个方法叫string.protypes.includes('要包含的字符串') 包含返回true 否则false
+                return this.list.filter(item =>{
+                    if(item.name.includes(keywords))
+                    {
+                        return item
+                    }
+                })
             }
         }
         })

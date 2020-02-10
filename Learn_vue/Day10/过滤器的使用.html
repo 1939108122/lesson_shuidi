@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../Day1/code/lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 定义一个全局的Vue过滤器 名字叫 msgFormat -->
+        <p>{{ msg | msgFormat('疯狂')}}</p>
+    </div>
+    <script>
+        Vue.filter('msgFormat', function(a,arg){
+            // 字符串的 replace方法 第一个参数 除了可写一个字符串之外 也可写正则表达式
+            return a.replace(/单纯/g,arg)
+        })
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                msg:'曾经我也是一个单纯的少年，单纯到问谁才是这个世界上最单纯的人'
+            },
+            methods: {
+
+            }
+            
+        })
+    </script>
+</body>
+</html>

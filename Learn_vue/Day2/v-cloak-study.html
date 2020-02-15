@@ -25,7 +25,7 @@
         <!-- v-bind： 指令可以简写为： 要绑定的属性  v-bind中可以写合法的js表达式 -->
         <!-- <input type="button" value="按钮" :title="mytitle + '123'" id="btn"> -->
         <!-- Vue 中提供了v-on： 事件绑定机制 -->
-        <input type="button" value="按钮" :title="mytitle + '123'" v-on:mouseover="show">
+        <input type="button" value="按钮" :title="mytitle + '123'" @mouseover="show">
         <!-- v-click: 缩写是 @ -->
     </div>
     <script src="../Day1/code/lib/vue-2.4.0.js"></script>

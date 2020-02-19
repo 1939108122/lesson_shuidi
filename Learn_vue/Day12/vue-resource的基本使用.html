@@ -24,7 +24,7 @@
             methods:{
                 getInfo() { //发起get请求 
                 // 当发起get请求之后 通过.then 来设置成功的回调函数
-                    this.$http.get('http://jsonplaceholder.typicode.com/users').then( function(result) {
+                    this.$http.get('http://www.liulongbin.top:3005/api/getprodlist').then( function(result) {
                         console.log(result.body)
                         // 通过result.body 拿到服务器返回成功的数据
                     }) 

@@ -14,10 +14,17 @@
         
         <div class="panel panel-primary">
               <div class="panel-heading">
-                    <h3 class="panel-title">Panel title</h3>
+                    <h3 class="panel-title">添加品牌</h3>
               </div>
-              <div class="panel-body">
-                    Panel content
+              <div class="panel-body form-inline">
+                    <label>
+                        Name:
+                        <input type="text"  v-model = "name" class="form-control">
+                    </label>
+                    <label>
+                        <input type="button" value="添加" @click = "add" class="btn btn-primary">
+                    </label>
+
               </div>
         </div>
         
@@ -31,12 +38,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="item in list" :key = "item.id">
+                <tr v-for="item in list" :key="item.id">
                     <td>{{ item.id }}</td>
                     <td>{{ item.name }}</td>
                     <td>{{ item.ctime }}</td>
                     <td>
-                        <a href="">删除</a>
+                        <a href="" @click.prevent = "">删除</a>
                     </td>
                 </tr>
             </tbody>
@@ -47,13 +54,31 @@
         var vm = new Vue({
             el:'#app',
             data:{
+                name:'',
+                id:'', 
                 list: [
-                    {id:'1',name:'奥迪', ctime: new Date()},
-                    {id:'2',name:'玛莎拉蒂', ctime: new Date()},
+                    {id: 1, name: '奔驰', ctime: new Date() },
+                    {id: 2, name: '宝马', ctime: new Date() }
                 ]
 
             },
+            created(){
+                this.getAllList()
+            },
             methods:{
+                add() {},
+                getAllList () {
+                    this.$http.get('http://www.liulongbin.top:3005/api/getprodlist').then(result => {
+                        if(result.body.status === 0)
+                        {
+                            //成功了
+                            this.list = result.body.message
+                        }
+                        else{
+                            alert('失败了')
+                        }
+                    })
+                }
                 
             }
         })

@@ -43,7 +43,7 @@
                     <td>{{ item.name }}</td>
                     <td>{{ item.ctime }}</td>
                     <td>
-                        <a href="" @click.prevent = "">删除</a>
+                        <a href="" @click.prevent = "del(item.id)">删除</a>
                     </td>
                 </tr>
             </tbody>
@@ -51,6 +51,9 @@
         
     </div>
     <script>
+        //全局配置接口根域名
+        Vue.http.options.root = 'http://www.liulongbin.top:3005/';
+        Vue.http.options.emulateJSON = true;
         var vm = new Vue({
             el:'#app',
             data:{
@@ -66,9 +69,9 @@
                 this.getAllList()
             },
             methods:{
-                add() {},
+                
                 getAllList () {
-                    this.$http.get('http://www.liulongbin.top:3005/api/getprodlist').then(result => {
+                    this.$http.get('api/getprodlist').then(result => {
                         if(result.body.status === 0)
                         {
                             //成功了
@@ -78,6 +81,35 @@
                             alert('失败了')
                         }
                     })
+                },
+                add() {
+                    this.$http.post('api/addproduct',{ name: this.name }).then(
+                        result =>{
+                            if(result.body.status === 0)
+                            {
+                                this.getAllList()
+                                this.name = ''
+                            }
+                            else
+                            {
+                                alert('添加失败！')
+                            }
+                        }
+                    )
+                },
+                del(id)
+                {
+                    this.$http.get("api/delproduct/" + id).then(result =>{
+                        if(result.body.status === 0)
+                        {
+                            this.getAllList()
+                        }
+                        else
+                        {
+                            alert('删除失败')
+                        }
+                    })
+
                 }
                 
             }

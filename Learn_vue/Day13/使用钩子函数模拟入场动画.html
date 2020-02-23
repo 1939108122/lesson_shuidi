@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Day1/code/lib/vue-2.4.0.js"></script>
+    <style>
+        .ball{
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="加入购物车" @click = "flag = !flag">
+        <transition @before-enter = "beforeEnter" @enter = "enter" @after-enter = "afterEnter">
+            <div class="ball" v-show = "flag"></div>
+        </transition>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                flag:false
+            },
+            methods:{
+                //注意钩子函数的第一个参数 ：el 表示要执行的动画的那个DOM元素 是个原生的JS DOM对象
+                // 可以认为  el 是通过 document.getElmentId('')   方式获取的原生JSDOM对象
+                beforeEnter(el) {
+                    // beforeEnter表示动画入场之前的函数  可以设置动画入场前的起始样式
+                    // 设置小球起始位置
+                    el.style.transform = "translate(0,0)"
+                },
+                enter(el, done) {
+                    //  el.offsetWidth没有实际作用  但必须要写 不写出不来动画效果 可以认为强制刷新
+                    el.offsetWidth 
+                    el.style.transform = "translate(150px,400px)"
+                    el.style.transition = 'all 1s ease'
+                    done()
+                },
+                afterEnter(el) {
+                    this.flag = !this.flag
+                }
+            } 
+        })
+    </script>
+</body>
+</html>

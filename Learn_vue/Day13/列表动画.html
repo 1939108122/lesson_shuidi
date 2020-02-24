@@ -13,6 +13,7 @@
             padding-left: 5px;
             line-height: 35px;
             font-style: 12px;
+            width: 100%;
         }
         .v-enter,
         .v-leave-to{
@@ -27,6 +28,14 @@
             background-color: hotpink;
             transition: all 0.8s ease;
         }
+        /* 下面的v-move 和 v-leave-active 配合使用 可以让动画元素渐渐的飘上来 */
+        .v-move{
+            transition: all 0.8s ease;
+        }
+        .v-leave-active{
+            position: absolute;
+        }
+
     </style>
 </head>
 <body>
@@ -42,11 +51,16 @@
                 <input type="button" value="添加" @click = "add">
             </label>
         </label>
-        <transition-group>
-            <ul v-for = "item in list" :key = "item.id">
-                <li>{{ item.id }} --- {{ item.name }}</li> 
-            </ul>
-    </transition-group>
+        
+        <!-- <ul > -->
+            <!-- 在transition-group 加入 appear 可以实现页面刚展示出来入场效果 -->
+            <transition-group appear tag = "ul">
+                <li v-for = "(item,i) in list" :key = "item.id" @click = "del(i)">
+                    {{ item.id }} --- {{ item.name }}
+                </li> 
+            </transition-group>
+        <!-- </ul> -->
+   
     </div>
     <script>
         var vm = new Vue({
@@ -64,6 +78,9 @@
             methods:{
                 add() {
                     this.list.push({id: this.id, name: this.name})
+                },
+                del(i) {
+                    this.list.splice(i,1)
                 }
             }
         })

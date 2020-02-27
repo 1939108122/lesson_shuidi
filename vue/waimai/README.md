@@ -5,3 +5,14 @@ components/header/header.vue  效力于多个页面
 Object.assign({}, .....)
 来自es6
 import from 模块化 
+
+组件化思维 
+一方面是一个页面由好多组件构成 
+页面开发可以划分任务 
+催生的是大量的团队合作
+每个组件要解耦
+scoped 
+#app[data-v-12121]
+Vue 禁止DOM操作
+ref=""
+this.$refs

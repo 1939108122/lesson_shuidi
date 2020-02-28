@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Day1/code/lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- <mycom3></mycom3> -->
+        <login></login>
+
+    </div>
+    <template id="tmp1">
+    <div><h3>这是通过template元素 在外部定义的组件结构  这个方式有代码的智能提示和高亮</h3>
+        <h1>nice</h1></div>
+    </template>
+    <template id="tmp2">
+        <h3>我要挣大钱</h3>
+    </template>
+    <script>
+        Vue.component('mycom3', {
+            template: '#tmp1'
+        })
+        var vm = new Vue({
+            el:'#app',
+            data:{
+
+            },
+            methods:{
+                
+            },
+            components:{
+                login: {
+                    template: '#tmp2'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

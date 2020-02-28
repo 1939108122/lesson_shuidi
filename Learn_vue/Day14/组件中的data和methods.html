@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Day1/code/lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <mycom1></mycom1>
+    </div>
+    <script>
+        // 组件可以有自己的data数据
+        // 组件的data和实例中的data不一样 实例中的data 可以为一个对象 但是组件中的data必须是一个方法
+        // 组件中的data除了必须是一个方法之外 方法内部还必须返回一个对象才行
+        Vue.component('mycom1', {
+            template:'<h3>这是全局组件--{{ msg }}</h3>',
+            data() {
+                return{
+                    msg: '这是组件的data'
+                }
+            }
+        })
+        var vm = new Vue({
+            el:'#app',
+            data:{
+
+            },
+            methods:{
+                
+            }
+        })
+    </script>
+</body>
+</html>

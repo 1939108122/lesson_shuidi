@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Day1/code/lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <com1 :parentmsg="msg"></com1>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                msg:'这是父组件'
+            },
+            methods:{
+               
+            },
+            components: {
+                // 结论: 经过演示 发现 子组件中 默认无法访问到 父组件中的data上的数据 和methods的方法
+                    com1:{
+                        data() {  // 注意 子组件的data数据 并不是通过父组件传递过来的 而是子组件自身私有的 数据可读可写
+                            return {
+                                title:123,
+                                content:'wan'
+                            }
+                        },
+                        template:'<h3>这是子组件--{{ parentmsg }}</h3>',
+                        props:['parentmsg'] //把父组件传递过来的 parentmsg 属性 先在prop数组中定义一下 这样才能使用这个数据，数据只可读（相当于c的继承） 无法重新赋值
+                    }
+                }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Day1/code/lib/vue-2.4.0.js"></script>
+    <style>
+        .v-enter,
+        .v-leave-to{
+            opacity: 0;
+            transform: translateX(150px);
+        }
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <a href="" @click.prevent = "comName='login'">登录</a>
+        <a href="" @click.prevent = "comName='register'">注册</a>
+        <!-- 通过 mode属性  设置 组件切换时候的方式 先出去再进来 -->
+        <transition mode = "out-in">
+            <component :is= "comName"></component>
+        </transition>
+    </div>
+    <template id="t1">
+        <h3>这是登录界面</h3>
+    </template>
+    <template id="t2">
+        <h3>这是注册界面</h3>
+    </template>
+    <script>
+        Vue.component('login',{
+            template:'#t1'
+        }),
+        Vue.component('register',{
+            template:'#t2'
+        })
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                comName:'login'
+            },
+            methods:{
+                
+            }
+        })
+    </script>
+</body>
+</html>

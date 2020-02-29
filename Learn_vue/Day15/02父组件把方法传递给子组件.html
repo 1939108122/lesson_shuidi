@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Day1/code/lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 父组件向子组件传递方法时 使用的事件绑定机制 v-on(@) 传递数据或者属性用的v-bind(:)  -->
+        <com2 @func = "show"></com2>
+    </div>
+    <template id="app2">
+        <div>
+            <h1>这是子组件</h1>
+            <input type="button" value="点击触发父组件" @click = "myclick">
+        </div>
+    </template>
+    <script>
+        var com2 = {
+            template: '#app2',
+            data() {
+              return {
+                  sonmsg:{name: '大头儿子', age: 6}
+              }  
+            },
+            methods: {
+                    myclick() {
+                        this.$emit('func',this.sonmsg)
+                    }
+                }
+        }
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                dataFromson:null
+            },
+            methods:{
+                show(data) {
+                    // console.log('调用了父组件的show方法'),
+                    // console.log(data)
+                    this.dataFromson = data
+                }
+            },
+            components: {
+                com2,
+              
+            }
+        })
+    </script>
+</body>
+</html>

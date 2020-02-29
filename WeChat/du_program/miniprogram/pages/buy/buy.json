@@ -1,3 +1,8 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "van-button":"../../weapp/dist/button",
+    "van-tab":"../../weapp/dist/tab",
+    "van-tabs":"../../weapp/dist/tabs",
+    "van-search": "../../weapp/dist/search"
+  }
 }

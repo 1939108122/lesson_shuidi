@@ -1,17 +1,78 @@
-<view>
- <view class="all">
-<swiper  class="container" indicator-dots="{{false}}" autoplay="{{false}}" interval="3000">
-<swiper-item  wx:for="{{slides}}">
- <image src="{{item.image}}"/>
-</swiper-item>
-</swiper>
- </view>
-  <view class="a">
-<view class="b"><image class="c" src="../../images/guarantee.png"></image> 正 品 保 障</view> 
-<view class="d"><image class="c" src="../../images/One by one inspection.png"></image> 逐 件 查 验</view>
-<view class="e"><image class="c" src="../../images/Multiple identification.png"></image> 多 重 鉴 别</view>
+<view class="A">
+   <view class="search1">
+      <navigator url="../search/search"><view class="search2"><van-search placeholder="搜索单品" /></view></navigator>
+      <view class="search3">
+         <navigator url="../classify/classify">
+            <view class = "s4">ALL</view>
+            <view class="s5">分 类</view>
+         </navigator>
+      </view>
    </view>
-   <view class="f"></view>
+   <van-tabs animated active="{{ active }}" color = "green" title-inactive-color = "#B6B5BD" title-active-color = "#000000">
+      <van-tab title="推荐">
+            <swiper class="container" indicator-dots="{{false}}" autoplay="{{false}}" interval="3000">
+               <swiper-item  wx:for="{{slides}}">
+                  <image src="{{item.image}}"/>
+               </swiper-item>
+            </swiper>
+         <view class="a">
+            <view class="a1"><image class="a2" src="cloud://hawkkke.6861-hawkkke-1300705540/images/guarantee.png"></image> 正 品 保 障</view> 
+            <view class="a3"><image class="a2" src="cloud://hawkkke.6861-hawkkke-1300705540/images/One by one inspection.png"></image> 逐 件 查 验</view>
+            <view class="a4"><image class="a2" src="cloud://hawkkke.6861-hawkkke-1300705540/images/Multiple identification.png"></image> 多 重 鉴 别</view>
+         </view>
+         <view class="B">
+            <view class="B1">
+               <view class="b1"><image class="b3" src="cloud://hawkkke.6861-hawkkke-1300705540/images/AJ.jpg"></image>Air Jordan</view> 
+               <view class="b2"><image class="b3" src="cloud://hawkkke.6861-hawkkke-1300705540/images/Yeezy.jpg"></image>Yeezy</view>
+               <view class="b4"><image class="b3" src="cloud://hawkkke.6861-hawkkke-1300705540/images/AF.jpg"></image>Air Force</view> 
+               <view class="b5"><image class="b3" src="cloud://hawkkke.6861-hawkkke-1300705540/images/Converse.jpg"></image>Converse</view>
+            </view>
+             <view class="B2">
+               <view class="b1"><image class="b3" src="cloud://hawkkke.6861-hawkkke-1300705540/images/Clothes.jpg"></image>冰点价</view> 
+               <view class="b2"><image class="b3" src="cloud://hawkkke.6861-hawkkke-1300705540/images/Phone.jpg"></image>数码潮玩</view>
+               <view class="b4"><image class="b3" src="cloud://hawkkke.6861-hawkkke-1300705540/images/Sk2.jpg"></image>新年礼物</view> 
+               <view class="b5"><image class="b3" src="cloud://hawkkke.6861-hawkkke-1300705540/images/More.png"></image>全部</view>
+            </view>
+         </view>
+         <view class="C">
+            <view class="C1">
+               <view class="c1">最新发售</view> 
+               <view class="c2">01 JAN</view>
+            </view>
+            <view class="C2">
+               <view class="c4">NIKE REACT SERTU 雾霾灰 彩虹编织</view> 
+               <view class="c5"><image class="c6" src="cloud://hawkkke.6861-hawkkke-1300705540/images/NRS.jpg"></image></view>
+            </view>
+         </view>
+      </van-tab>
+      
+      <van-tab title="新品" >
+         <view class ="D">
+            <view class="D3">
+               <block wx:for="{{Newthings}}">
+                  <view class="D1"> 
+                     <image class="d1" src="{{ item.image }}" />
+                     <view class="d2">{{ item.describe }}</view>
+                     <view class="d3">{{ item.price }}</view>
+                  </view>
+               </block>
+            </view>
+            <view class="D3">
+               <block wx:for="{{Newthings2}}">
+                  <view class="D1"> 
+                     <image class="d1" src="{{ item.image }}" />
+                     <view class="d2">{{ item.describe }}</view>
+                     <view class="d3">{{ item.price }}</view>
+                  </view>
+               </block>
+            </view>
+         </view>
+      </van-tab>
+      <van-tab title="人气">内容 3</van-tab>
+      <van-tab title="球鞋">内容 4</van-tab>
+      <van-tab title="服饰">内容 5</van-tab>
+      <van-tab title="卫衣">内容 6</van-tab>
+   </van-tabs>
 </view>
 
 

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Day1/code/lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="获取元素" @click= "getElement">
+        <h3 id="myh3" ref="myh3">今天天气不错，吃顿好的</h3>
+        <hr>
+        <login ref="login"></login>
+    </div>
+    <script>
+        var login = {
+            template: '<h1>登录组件</h1>',
+            data() {
+                return{
+                    msg:'调用了子组件的数据'
+                }
+            }
+        }
+        var vm = new Vue({
+            el:'#app',
+            data:{
+
+            },
+            methods:{
+                getElement() {
+                    // ref 是 reference 值类型 和引用类型  referenceError 
+                //    console.log( this.$refs.myh3.innerText)
+                console.log(this.$refs.login.msg)
+                }
+            },
+            components:{
+                login
+            }
+        })
+    </script>
+</body>
+</html>

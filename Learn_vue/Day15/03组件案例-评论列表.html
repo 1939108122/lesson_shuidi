@@ -11,7 +11,7 @@
 <body>
     <div id="app">
         
-        <commx></commx>
+        <commx @func= "loadComments"></commx>
 
         <ul class="list-group"> 
             <li class="list-group-item" v-for="item in list" :key="item.id">
@@ -54,6 +54,7 @@
                     // 重新保存最新的评论数据
                     localStorage.setItem('cmts',JSON.stringify(list))
                     this.user = this.content = ''
+                    this.$emit('func')
                 }
             }
         }
@@ -66,8 +67,14 @@
                     { id: Date.now(), user:'亚索',content:'我命由己不由天'}
                 ]
             },
+            created() {  //data和methods 已经初始化
+                this.loadComments()
+            },
             methods:{
-                
+                loadComments() {
+                    var list = JSON.parse(localStorage.getItem('cmts') || '[]')
+                    this.list = list
+                }
             },
             components: {
                 'commx':commentBox

@@ -9,6 +9,20 @@
     <!-- 导入 vue-router包 -->
     <script src="../Day1/code/lib/vue-router-3.0.1.js"></script>
 </head>
+<style>
+    .myactive{
+        color: red;
+    }
+    .v-enter,
+    .v-leave-to{
+        opacity: 0;
+        transform: translateX(150px);
+    }
+    .v-enter-active,
+    .v-leave-active{
+        transition: all 0.8s ease;
+    }
+</style>
 <body>
     <div id="app">
         <!-- <a href="#/login">登录</a>
@@ -18,7 +32,9 @@
         <router-link to="/login" tag = "span">登录</router-link>
         <router-link to="/register">注册</router-link>
         <!-- 这是 vue-router 提供的元素  路由匹配的组件将会展示到这个router-view中去 -->
-        <router-view></router-view> 
+        <transition mode="out-in">
+            <router-view></router-view> 
+        </transition>
        
     </div>
     <script>
@@ -35,6 +51,10 @@
             routes: [
                 // 每个路由规则都是一个对象  都有两个必须的属性 path 和component
                 {
+                    path:'/',
+                   redirect:'/login'
+                },
+                {
                     path:'/login',
                     component:login  //注意 component的值必须是一个组件的模板对象， 不是组件的引用名称
                 },
@@ -42,7 +62,8 @@
                     path:'/register',
                     component: register
                 }
-            ]
+            ],
+            linkActiveClass: 'myactive'
         })
         var vm = new Vue({
             el:'#app',

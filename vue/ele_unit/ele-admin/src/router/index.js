@@ -18,18 +18,17 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
-  // 如果你在一定的时间内登陆过， 就去首页， 
-  // 如果你在任何页面， 没有权限， 后台， 一定会送你去登录页
+  //登入过去首页
+  //没有权限会被送去登入页面
   {
-    path: '/login',
-    name: 'Login',
-    // 延迟加载
-    component: () => import ('../views/Login.vue')
+    path:'/login',
+    name:'Login',
+    component: () => import('../views/Login.vue')
   }
 ]
 
 const router = new VueRouter({
-  // mode: 'history', 
+  // mode:"hash",
   routes
 })
 

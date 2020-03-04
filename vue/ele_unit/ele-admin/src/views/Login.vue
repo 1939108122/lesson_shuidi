@@ -11,7 +11,7 @@
         .form-fade-enter -> .form-fade-enter-active(1s)
         出场  true -> false
         form-fade-leave 离开的开始状态  一frame
-        form-fade-leave-to 离开
+        form-fade-leave-active 离开
       -->
       <section class="form_container form-fade-enter" v-show="showLogin">
         <div class="manage_tip">
@@ -145,7 +145,7 @@ export default {
 // - 帧
 // form-fade-leave true false opacity 1 translate3d(0, 0px, 0)
 // opacity 0 translate3d(0, -50px, 0)
-.form-fade-enter, .form-fade-leave-to
+.form-fade-enter, .form-fade-leave-active
   transform translate3d(0, -50px, 0)
   opacity 0 
 </style>

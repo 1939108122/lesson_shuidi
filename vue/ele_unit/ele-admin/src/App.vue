@@ -8,6 +8,6 @@
   </div>
 </template>
 
-<style lang="stylus"> 
-@import './style/common.styl';
+<style lang="stylus">
+@import "./style/common.styl";
 </style>

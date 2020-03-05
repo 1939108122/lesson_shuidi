@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Day1/code/lib/vue-2.4.0.js"></script>
+    <!-- 导入 vue-router包 -->
+    <script src="../Day1/code/lib/vue-router-3.0.1.js"></script>
+</head>
+<style>
+    .myactive{
+        color: red;
+    }
+    .v-enter,
+    .v-leave-to{
+        opacity: 0;
+        transform: translateX(150px);
+    }
+    .v-enter-active,
+    .v-leave-active{
+        transition: all 0.8s ease;
+    }
+</style>
+<body>
+    <div id="app">
+        <!-- <a href="#/login">登录</a>
+        <a href="#/register">注册</a> -->
+
+        <!-- router-link 默认渲染了一个a标签  可用tag改写 标签样式 -->
+        <router-link to="/login" tag = "span">登录</router-link>
+        <router-link to="/register">注册</router-link>
+        <!-- 这是 vue-router 提供的元素  路由匹配的组件将会展示到这个router-view中去 -->
+        <transition mode="out-in">
+            <router-view></router-view> 
+        </transition>
+       
+    </div>
+    <script>
+        var login = {
+            template:'<h1>这是登录界面</h1>'
+        }
+        var register = {
+            template:'<h1>这是注册界面</h1>'
+        }
+
+        // 创建一个路由对象 当导入一个路由之后， 在window 全局对象中 就有了一个路由的构造函数，叫做 vueRouter
+        var routerObj = new VueRouter({
+            // route表示路由匹配规则的意思
+            routes: [
+                // 每个路由规则都是一个对象  都有两个必须的属性 path 和component
+                {
+                    path:'/',
+                   redirect:'/login'
+                },
+                {
+                    path:'/login',
+                    component:login  //注意 component的值必须是一个组件的模板对象， 不是组件的引用名称
+                },
+                {
+                    path:'/register',
+                    component: register
+                }
+            ],
+            linkActiveClass: 'myactive'
+        })
+        var vm = new Vue({
+            el:'#app',
+            data:{
+
+            },
+            methods:{
+                
+            },
+            router: routerObj, // 将路由规则对象 注册到vm实例上去， 用来监听 URL地址的变化 然后展示对应的组件
+            watch: {
+                '$route.path' : function (newVal, oldVal) {
+                    // console.log(newVal+ '--' + oldVal)
+                    if(newVal === '/login') {
+                        console.log('欢迎进入登录界面！')
+                    }
+                    else if(newVal === '/register')
+                    {
+                        console.log('欢迎进入注册界面！')
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

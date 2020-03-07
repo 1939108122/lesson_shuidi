@@ -1,4 +1,5 @@
 const path = require('path')
+// const htmlWebpackPlugin = require('htmlWebpackPlugin')
 module.exports = {
     
     // entry 是webpack指定的入口
@@ -7,6 +8,19 @@ module.exports = {
     output:{
         path: path.join(__dirname, './dist'),//打包指定的文件路径
         filename: 'bundle.js' //打包指定的文件名称
+    },
+    devServer: {
+        open: true, //自动打开浏览器
+        port:3000, //设置启动时的端口
+        contentBase: 'src', // 指定托管的根目录
+        hot: true    // 设置热更新
+
+    },
+    module: { //这个节点用于配置所有第三方模块加载器
+        rules:[ //所有第三方的匹配规则
+            { test: /\.css$/, use: ['style-loader', 'css-loader' ] } //配置处理 .css文件
+        ]
+
     },
     mode: 'development'
 }

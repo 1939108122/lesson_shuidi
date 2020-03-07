@@ -1,11 +1,12 @@
 //main.js 是我们项目的js入口文件
 //1.导入jquery importES6 导入模块的方式 
 import $ from 'jquery'
-
+import './css/index.css' //使用import导入 css样式表 要用第三方loader加载器这个才可以使用 处理css需要下载style-loader & css-loader插件
 $(function () {
     $('li:odd').css('backgroundColor', 'black')
     $('li:even').css('backgroundColor', function () {
         return '#' + 'D97634'
+        
     })
 })
 //webpack 做的事情

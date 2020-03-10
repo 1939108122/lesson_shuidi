@@ -5,6 +5,9 @@ import Vue from 'vue'
 //     template:'<h1>这是登录组件</h1>'
 // }
 import login from './login.vue' //默认webpack无法打包 .vue 文件 需要安装相关的loader：cnpm i vue-loader vue-template-compiler -D
+import m1, { title as title123, hhh}from './test.js'
+console.log(m1)
+console.log(title123+'---' + hhh)
 var vm = new Vue({
     el:'#app',
     data:{

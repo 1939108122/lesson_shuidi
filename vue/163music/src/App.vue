@@ -10,7 +10,7 @@
         />
       </div>
     </div>
-    
+        <x-button type="primary">按钮</x-button>
   </div>
 </template>
 <script>

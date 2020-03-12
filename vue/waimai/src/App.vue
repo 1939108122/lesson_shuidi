@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <x-button type="primary">按钮</x-button>
     <v-header :seller="seller"></v-header>
     <div class="tab border-1px">
       <div class="tab-item">

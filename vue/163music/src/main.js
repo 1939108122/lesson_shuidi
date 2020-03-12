@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-
+import hwkui from 'hwkui'
+import 'hwkui/lib/hwkui.css'
+Vue.use(hwkui)
 Vue.config.productionTip = false
 
 new Vue({

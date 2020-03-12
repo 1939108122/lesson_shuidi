@@ -1,6 +1,6 @@
 {
-  "name": "hwkui",
-  "version": "0.1.0",
+  "name": "hahakui",
+  "version": "0.1.1",
   "description": "设计的第一个Vue开发框架",
   "keywords": [
     "component",
@@ -9,11 +9,11 @@
   ],
   "homepage": "https://github.com/1939108122",
   "license": "MIT",
+  "main": "lib/hahakui.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lib": "vue-cli-service build --target lib --name hwkui --dest lib packages/index.js",
-    "main": "lib/hwkui.umd.min.js"
+    "lib": "vue-cli-service build --target lib --name hahakui --dest lib packages/index.js"
   },
   "dependencies": {
     "core-js": "^3.6.4",

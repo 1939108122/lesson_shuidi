@@ -14,7 +14,7 @@ const userSchema = new Schema({
     }
   },
   "tags": [
-    {type: String}
+    {type: String, index: true }
   ],
   "name": { type: String }
 })

@@ -1,15 +1,16 @@
 import Vue from 'vue'
-import Vuex, { mapActions } from 'vuex'
+import Vuex from 'vuex'
 import api from '@/api/index.js'
-Vue.use(Vuex)
 
+Vue.use(Vuex)
+// 单一状态树  单一?  树？
 export default new Vuex.Store({
   state: {
-    users:[
+    users: [
       // {
       //   "address": {
       //     "city": "Los Angeles",
-      //     "state": 'california',
+      //     "state": 'California',
       //     "pincode": "123"
       //   },
       //   "tags": [
@@ -21,33 +22,33 @@ export default new Vuex.Store({
       // },
       // {
       //   "address": {
-      //     "city": "抚州",
+      //     "city": "赣州",
       //     "state": '江西',
-      //     "pincode": "33100"
+      //     "pincode": "331000"
       //   },
       //   "tags": [
       //     "coding",
       //     "blogs"
       //   ],
-      //   "name": "塔图姆"
+      //   "name": "王志浩"
       // },
       // {
       //   "address": {
       //     "city": "九江",
       //     "state": '江西',
-      //     "pincode": "33100"
+      //     "pincode": "331000"
       //   },
       //   "tags": [
       //     "coding",
-      //     "blogs"
+      //     "swim"
       //   ],
       //   "name": "刘子民"
       // },
-      // {
+      //  {
       //   "address": {
       //     "city": "赣州",
       //     "state": '江西',
-      //     "pincode": "33100"
+      //     "pincode": "331000"
       //   },
       //   "tags": [
       //     "coding",
@@ -58,29 +59,35 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
-    setUsers(state, payload) { //对数据的写操作唯一地方
+    setUsers(state, payload) { // 写操作 唯一地方
       state.users = payload
     }
   },
-  actions: {  //写入状态的第一步
-    // 负责api通信的地方
-    fetchUsers( context ) {
+  actions: { // 写入状态的第一步
+    // 更api 通信的地方`
+    fetchUsers(context) {
       api
-      .fetchUsers((users) =>{
+        .fetchUsers((users)=> {
           // console.log(users);
-          context.commit('setUsers', users)
+          // 写入state,   严格一些 写一个条子 流程来
+          context.commit('setUsers', users) 
         })
     },
-   
+    queryTag(context, evt) {
+      console.log(arguments);
+      const tag = evt.target.value;
+      // console.log(tag);
+      api
+        .fetchUsersByTag(tag, (users) => {
+          context.commit('setUsers', users)
+        })
+    }
+  },
+  getters: {  // state computed 函数
+    getUsers(state) { // vuex 会给getters  state  读操作
+      return state.users
+    }
   },
   modules: {
-  },
-  getters: {  //state 相当于computed函数
-    getUsers(state) {    //得到state 读操作
-      return state.users.map((user, index) =>{
-        user.id = user.address.pincode
-        return user
-      })
-    }
   }
 })

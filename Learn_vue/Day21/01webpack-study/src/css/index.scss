@@ -2,6 +2,13 @@ html, body{
     .box{
         width: 220px;
         height: 220px;
-        background-color: red;
+        background: url(../images/fighting.jpg);
+        background-size: cover;
+    }
+    .box2{
+        width: 220px;
+        height: 220px;
+        background: url(../images2/fighting.jpg);
+        background-size: cover;
     }
 }

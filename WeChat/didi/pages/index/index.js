@@ -18,7 +18,7 @@ Page({
   },
   showUser() {
     // 用户如何点击了授权  就显示小家 
-    // 如果没有 ，则去登陆
+    // 如果没有 ，则去登陆 
     console.log(app);
     wx.navigateTo({
 

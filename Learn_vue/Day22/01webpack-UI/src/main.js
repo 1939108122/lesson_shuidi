@@ -2,6 +2,7 @@ import Vue from 'vue'
 import app from './App.vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import './css/app.css'
+import './lib/mui/css/mui.min.css'
 import { Button } from 'mint-ui'
 Vue.component( Button.name, Button)
 // import MintUI from 'mint-ui'

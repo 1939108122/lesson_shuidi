@@ -3,6 +3,7 @@
         <h1>这是App组件</h1>
         <mt-button type="danger" size="small" icon ="back" @click="show"> default </mt-button>
         <mybtn> 12345 </mybtn>
+        <button type="button" class="mui-btn mui-btn-royal">紫色</button>
         <router-link to="/account"> account </router-link>
         <router-link to="/goodslist"> goodslist </router-link>
 

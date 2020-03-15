@@ -2,12 +2,14 @@ import Vue from 'vue'
 import app from './App.vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import './css/app.css'
-import MintUI from 'mint-ui'
-import 'mint-ui/lib/style.css'
+import { Button } from 'mint-ui'
+Vue.component( Button.name, Button)
+// import MintUI from 'mint-ui'
+// import 'mint-ui/lib/style.css'
 import router from './router.js'  //导入自定义路由模块
 import VueRouter from 'vue-router'
 
-Vue.use(MintUI)
+// Vue.use(MintUI)
 Vue.use(VueRouter)
 
 var vm = new Vue({

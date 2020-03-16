@@ -19,6 +19,7 @@
 </template>
 <script>
 export default {
+    name:'ElButton',
     props: {
         loading:Boolean,
         type:{

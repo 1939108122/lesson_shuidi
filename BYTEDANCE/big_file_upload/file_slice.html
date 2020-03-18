@@ -9,6 +9,19 @@
 <body>
     <input type="file" id="file">
     <script>
+        function request ({
+            url,
+            method = 'POST',
+            data,
+            headers ={},
+            requestList // 上传的文件列表
+        }) {
+            return new Promise(resolve =>{
+                const xhr = new XMLHttpRequest(); //js ajax对象
+                xhr.open(method, url);//  请求
+                
+            });
+        }
         document
         .getElementById('file')
         .addEventListener('change',(event) =>{
@@ -16,7 +29,7 @@
             // console.log(file);
             // console.log(Object.prototype.toString.call(file)); 
             // console.log(file.slice(0,102400)); // array slice
-            let cur  =0, size = 1024*1024;//1M
+            let cur  =0, size = 0.5*1024*1024;//1M
             const fileChunkList = [] //blob数组
             while(cur<file.size)
             {

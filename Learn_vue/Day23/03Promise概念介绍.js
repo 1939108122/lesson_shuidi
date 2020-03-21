@@ -19,11 +19,19 @@ const fs = require ('fs')
 // })
 
     function getFilePath (fpath) {
-        var promise = new Promise (function () {
+        var promise = new Promise (function (resolve, reject) {
             fs.readFile(fpath, 'utf-8', (err, dataStr) => {
-                if(err) throw err
-                console.log(dataStr)
+                // if(err) throw err
+                // console.log(dataStr)
+                if(err)  return reject (err)
+                resolve(dataStr)
             })
         })
+        return promise
     }
-    getFilePath('./files/1.txt')
+    var p = getFilePath('./files/12.txt')
+    p.then(function (data) {
+        console.log(data + '-----')
+    }, function (err) {
+        console.log(err.message)
+    })

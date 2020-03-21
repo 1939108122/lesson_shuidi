@@ -6,6 +6,24 @@
 // var promise = new Promise () //使用
 
 
-var promise = new Promise (function() {
-    // function 内部是具体的异步操作 
-})
+// var promise = new Promise (function() {
+//     // function 内部是具体的异步操作 
+// })
+const fs = require ('fs')
+// 每当new 这么一个Promise实例时， 就会立即执行这个一步操作的代码
+// var promise = new Promise (function () {
+//     fs.readFile('./files/1.txt', 'utf-8', (err, dataStr) => {
+//         if(err) throw err
+//         console.log(dataStr)
+//     })
+// })
+
+    function getFilePath (fpath) {
+        var promise = new Promise (function () {
+            fs.readFile(fpath, 'utf-8', (err, dataStr) => {
+                if(err) throw err
+                console.log(dataStr)
+            })
+        })
+    }
+    getFilePath('./files/1.txt')

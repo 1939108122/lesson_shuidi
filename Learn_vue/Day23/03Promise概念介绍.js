@@ -18,8 +18,25 @@ const fs = require ('fs')
 //     })
 // })
 
+    // function getFilePath (fpath) {
+    //     var promise = new Promise (function (resolve, reject) {
+    //         fs.readFile(fpath, 'utf-8', (err, dataStr) => {
+    //             // if(err) throw err
+    //             // console.log(dataStr)
+    //             if(err)  return reject (err)
+    //             resolve(dataStr)
+    //         })
+    //     })
+    //     return promise
+    // }
+    // var p = getFilePath('./files/1.txt')
+    // p.then(function (data) {
+    //     console.log(data + '-----')
+    // }, function (err) {
+    //     console.log(err.message)
+    // })
     function getFilePath (fpath) {
-        var promise = new Promise (function (resolve, reject) {
+        return promise = new Promise (function (resolve, reject) {
             fs.readFile(fpath, 'utf-8', (err, dataStr) => {
                 // if(err) throw err
                 // console.log(dataStr)
@@ -29,8 +46,9 @@ const fs = require ('fs')
         })
         return promise
     }
-    var p = getFilePath('./files/12.txt')
-    p.then(function (data) {
+    
+    getFilePath('./files/1.txt')
+    .then(function (data) {
         console.log(data + '-----')
     }, function (err) {
         console.log(err.message)

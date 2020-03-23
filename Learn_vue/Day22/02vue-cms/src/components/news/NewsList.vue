@@ -41,8 +41,29 @@
   </div>
 </template>
 <script>
+import { Toast } from 'mint-ui'
 export default {
-    
+    data() {
+      return {
+        newslist: []
+      }
+    },
+    created() {
+      this.getNewsList()
+    },
+    methods: {
+      getNewsList() {
+        this.$http.get("api/getnewslist").then(result => {
+          if(result.body.status === 0)
+          {
+            this.newslist = result.body.message
+          }
+          else{
+            Toast("获取新闻资讯失败")
+          }
+        })
+      }
+    }
 }
 </script>
 <style lang="scss" scoped>

@@ -11,6 +11,8 @@ import router from './router.js'
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
 Vue.use(VueRouter)
+// 设置请求的根路径
+Vue.http.options.root = 'http://www.liulongbin.top:3005'
 Vue.component(Header.name, Header);
 var vm = new Vue({
     el: '#app',

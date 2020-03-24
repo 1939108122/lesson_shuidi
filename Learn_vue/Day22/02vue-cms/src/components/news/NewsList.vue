@@ -43,23 +43,25 @@
 <script>
 import { Toast } from 'mint-ui'
 export default {
-    data() {
+   data() {
       return {
         newslist: []
       }
     },
     created() {
-      this.getNewsList()
+      this.getNewsList() 
+      
     },
     methods: {
       getNewsList() {
-        this.$http.get("api/getnewslist").then(result => {
+        this.$http.get('api/getnewslist').then(result=> {
+          // console.log(result.body);
           if(result.body.status === 0)
           {
-            this.newslist = result.body.message
+            this.getnewslist = result.body.message
           }
           else{
-            Toast("获取新闻资讯失败")
+            Toast('加载轮播图失败')
           }
         })
       }

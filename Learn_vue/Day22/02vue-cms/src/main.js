@@ -9,8 +9,13 @@ import './lib/mui/css/icons-extra.css'
 import VueRouter from 'vue-router'
 import router from './router.js'
 import VueResource from 'vue-resource'
+import moment from 'moment'
 Vue.use(VueResource)
 Vue.use(VueRouter)
+
+Vue.filter('dataFormat', function (dataStr, pattern="YYYY-MM-DD HH:mm:ss"){
+   return moment(dataStr).format(pattern)
+})
 // 设置请求的根路径
 Vue.http.options.root = 'http://www.liulongbin.top:3005'
 Vue.component(Header.name, Header);

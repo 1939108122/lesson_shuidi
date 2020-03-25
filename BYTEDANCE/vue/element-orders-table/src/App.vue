@@ -6,11 +6,18 @@
     </div>
     <router-view/> -->
     <div>
+      按标题查询：
       <el-input v-model="listQuery.title" placeholder="Title"
-      style="width:200px;" class="filter-item"
+      style="width:200px" class="filter-item"
       @keyup.enter.native="getList"
       ></el-input>
+      按作者查询：
+      <el-input v-model="listQuery.author" style="width:200px;" class="filter-item" placeholder="author" 
+       @keyup.enter.native="getAuthor">
+      </el-input>
+     <el-button type="primary" @click="reverse">id倒序排序</el-button>
     </div>
+    
     <el-table :data="list">
       <el-table-column label="ID" prop="id" 
       align="center" width="80">
@@ -20,6 +27,24 @@
       align="center" width="300">
         <template slot-scope="{row}">
           <span class="link-type">{{row.title}}</span>
+        </template>
+      </el-table-column>
+       <el-table-column label="author" prop="author" 
+      align="center" width="300">
+        <template slot-scope="{row}">
+          <span class="link-type">{{row.author}}</span>
+        </template>
+      </el-table-column>
+        <el-table-column label="reviewer" prop="reviewer" 
+      align="center" width="300">
+        <template slot-scope="{row}">
+          <span class="link-type">{{row.reviewer}}</span>
+        </template>
+      </el-table-column>
+        <el-table-column label="content_short" prop="content_short" 
+      align="center" width="300">
+        <template slot-scope="{row}">
+          <span class="link-type">{{row.content_short}}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -48,12 +73,14 @@ export default {
       listQuery: {
         limit: 20,
         page:1,
-        title: ''
+        title: '',
+        author:''
       }
     }
   },
   created() {
-    this.getList()
+    this.getList(),
+    this.getAuthor()
   },
   methods: {
     getList() {
@@ -65,7 +92,21 @@ export default {
         this.list = response.data.list
         this.total = response.data.total
       })
+    },
+    getAuthor() {
+      Axios.get('/vue-element-admin/article/list', {
+        params: this.listQuery // 查询对象  发过去
+      })
+      .then(response => {
+        console.log(response);
+        this.list = response.data.list
+        this.total = response.data.total
+      })
+    },
+    reverse() {
+      this.list.reverse()
     }
+
   }
 }
 </script>

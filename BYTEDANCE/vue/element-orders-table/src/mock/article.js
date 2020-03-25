@@ -33,12 +33,13 @@ for (let i = 0;  i < count; i++) {
 Mock.mock(new RegExp('/vue-element-admin/article/list'), 'get', (config) => {
   console.log(config);
   // list 根据params 分页
-  const { page = 1, limit = 20, title } = param2Obj(config.url)
+  const { page = 1, limit = 20, title,author } = param2Obj(config.url)
   // console.log(page, limit);
   // title , 重要性 ， 时间， 状态查询
   let mockList = list.filter(item => {
     // 条件一个个加，
     if (title && item.title.indexOf(title) < 0) return false;
+    if (author && item.author.indexOf(author) < 0) return false;
     // .......
     return true;
   });

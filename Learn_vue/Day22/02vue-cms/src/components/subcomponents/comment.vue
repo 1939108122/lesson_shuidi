@@ -11,7 +11,7 @@
         <div class="cmt-body">{{ item.content === 'undefined'? '此用户很懒，什么都没留下':item.content }}</div>
       </div>
     </div>
-    <mt-button type="danger" size="large" plain>加载更多</mt-button>
+    <mt-button type="danger" size="large" plain @click = "getMore">加载更多</mt-button>
   </div>
 </template>
 <script>
@@ -31,13 +31,18 @@ export default {
         this.$http.get("api/getcomments/"+ this.id +"?pageindex=" + this.pageIndex ).then(result=>{
           if(result.body.status === 0)
           {
-            this.comments = result.body.message
+            // this.comments = result.body.message
+            this.comments = this.comments.concat(result.body.message)   //每次获取数据 不能覆盖 需要连接之前的数据
           }
           else{
             Toast('获取内容失败')
           }
           // console.log(result.body)
         })
+      },
+      getMore() {
+        this.pageIndex++,
+        this.getComments()
       }
     },
     props:['id']

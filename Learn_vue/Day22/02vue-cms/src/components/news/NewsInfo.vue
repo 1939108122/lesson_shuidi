@@ -7,13 +7,13 @@
     </p>
 
     <hr>
-    <div class="content" v-html="newsinfo.content">
-
-    </div>
+    <div class="content" v-html="newsinfo.content"></div>
+    <comment-box></comment-box>
   </div>
 </template>
 <script>
 import { Toast } from 'mint-ui'
+import comment from '../subcomponents/comment.vue'
 export default {
   data() {
     return {
@@ -35,6 +35,9 @@ export default {
         }
       })
     }
+  },
+  components: {
+    'comment-box': comment
   }
 
 }

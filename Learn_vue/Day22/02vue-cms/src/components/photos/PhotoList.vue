@@ -18,19 +18,35 @@
           <a class="mui-control-item" href="#item5mobile" data-wid="tab-top-subpage-5.html">
             娱乐
           </a>
-          <!--<a class="mui-control-item" href="#item6mobile" data-wid="tab-top-subpage-6.html">
+          <a class="mui-control-item" href="#item6mobile" data-wid="tab-top-subpage-6.html">
             科技
-          </a>-->
+          </a>
         </div>
       </div>
 		</div>
   </div>
 </template>
 <script>
+// 导入mui js文件
+import mui from '../../lib/mui/js/mui.min.js'
+
 export default {
+  data() {
+    return {
+
+    }
+  },
+  mounted() {  //当组件中的DOM结构被渲染好并放到页面中去， 会执行这个钩子函数
+    // 初始化滑动控件
+mui('.mui-scroll-wrapper').scroll({
+  deceleration: 0.0005
   
+}) 
+  }
 }
 </script>
-<style>
-
+<style lang="scss" scoped>
+* {
+  touch-action: pan-y
+ }
 </style>

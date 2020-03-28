@@ -3,23 +3,8 @@
     <div id="slider" class="mui-slider">
       <div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
         <div class="mui-scroll">
-          <a class="mui-control-item mui-active" href="#item1mobile" data-wid="tab-top-subpage-1.html">
-            推荐
-          </a>
-          <a class="mui-control-item" href="#item2mobile" data-wid="tab-top-subpage-2.html">
-            热点
-          </a>
-          <a class="mui-control-item" href="#item3mobile" data-wid="tab-top-subpage-3.html">
-            北京
-          </a>
-          <a class="mui-control-item" href="#item4mobile" data-wid="tab-top-subpage-4.html">
-            社会
-          </a>
-          <a class="mui-control-item" href="#item5mobile" data-wid="tab-top-subpage-5.html">
-            娱乐
-          </a>
-          <a class="mui-control-item" href="#item6mobile" data-wid="tab-top-subpage-6.html">
-            科技
+          <a :class="['mui-control-item',item.id == 0? 'mui-active':'']" v-for=" item in cates" :key=" item.id">
+              {{ item.title }}
           </a>
         </div>
       </div>
@@ -29,11 +14,11 @@
 <script>
 // 导入mui js文件
 import mui from '../../lib/mui/js/mui.min.js'
-
+import { Toast } from 'mint-ui'
 export default {
   data() {
     return {
-
+      cates: []
     }
   },
   mounted() {  //当组件中的DOM结构被渲染好并放到页面中去， 会执行这个钩子函数
@@ -42,6 +27,23 @@ mui('.mui-scroll-wrapper').scroll({
   deceleration: 0.0005
   
 }) 
+  },
+  created() {
+    this.getAllCategoty()
+  },
+  methods: {
+    getAllCategoty()
+    {
+      this.$http.get('api/getimgcategory').then( result=> {
+         if(result.body.status === 0)
+        {
+            result.body.message.unshift({ title: '全部', id: 0 })
+            this.cates = result.body.message
+        }else{
+          Toast('获取数据失败')
+        }
+      })
+    }
   }
 }
 </script>

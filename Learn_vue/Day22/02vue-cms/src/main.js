@@ -1,7 +1,7 @@
 //入口文件 
 import Vue from 'vue'
 import app from './App.vue'
-import { Header,Swipe, SwipeItem, Button } from 'mint-ui';
+import { Header,Swipe, SwipeItem, Button, Lazyload} from 'mint-ui';
 Vue.component(Header.name, Header);
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
@@ -12,6 +12,7 @@ import VueRouter from 'vue-router'
 import router from './router.js'
 import VueResource from 'vue-resource'
 import moment from 'moment'
+Vue.use( Lazyload )
 Vue.use(VueResource)
 Vue.use(VueRouter)
 

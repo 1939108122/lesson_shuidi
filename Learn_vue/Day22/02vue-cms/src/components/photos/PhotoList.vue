@@ -3,12 +3,18 @@
     <div id="slider" class="mui-slider">
       <div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
         <div class="mui-scroll">
-          <a :class="['mui-control-item',item.id == 0? 'mui-active':'']" v-for=" item in cates" :key=" item.id">
+          <a :class="['mui-control-item',item.id == 0? 'mui-active':'']" v-for=" item in cates" :key=" item.id" 
+          @click="getPhotoListByCateId(item.id)">
               {{ item.title }}
           </a>
         </div>
       </div>
 		</div>
+    <ul>
+      <li v-for="item in list" :key="item.id">
+        <img v-lazy="item.img_url">
+      </li>
+    </ul>
   </div>
 </template>
 <script>
@@ -18,7 +24,8 @@ import { Toast } from 'mint-ui'
 export default {
   data() {
     return {
-      cates: []
+      cates: [],
+      list: []
     }
   },
   mounted() {  //当组件中的DOM结构被渲染好并放到页面中去， 会执行这个钩子函数
@@ -29,7 +36,8 @@ mui('.mui-scroll-wrapper').scroll({
 }) 
   },
   created() {
-    this.getAllCategoty()
+    this.getAllCategoty(),
+    this.getPhotoListByCateId(0)
   },
   methods: {
     getAllCategoty()
@@ -43,6 +51,17 @@ mui('.mui-scroll-wrapper').scroll({
           Toast('获取数据失败')
         }
       })
+    },
+    getPhotoListByCateId(cateId) {
+      this.$http.get('api/getimages/'+ cateId).then( result => {
+         if(result.body.status === 0)
+        {
+          this.list = result.body.message
+
+        }else{
+          Toast('获取数据失败')
+        }
+      })
     }
   }
 }
@@ -50,5 +69,10 @@ mui('.mui-scroll-wrapper').scroll({
 <style lang="scss" scoped>
 * {
   touch-action: pan-y
+ }
+ img[lazy="loading"] {
+   width: 40px;
+   height: 300px;
+   margin: auto;
  }
 </style>

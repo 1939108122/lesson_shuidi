@@ -10,9 +10,13 @@
         </div>
       </div>
 		</div>
-    <ul>
+    <ul class="photo-list">
       <li v-for="item in list" :key="item.id">
         <img v-lazy="item.img_url">
+        <div class="info">
+          <h1 class="info-title"> {{ item.title }}</h1>
+          <div class="info-body"> {{ item.zhaiyao }}</div>
+        </div>
       </li>
     </ul>
   </div>
@@ -70,9 +74,41 @@ mui('.mui-scroll-wrapper').scroll({
 * {
   touch-action: pan-y
  }
- img[lazy="loading"] {
-   width: 40px;
-   height: 300px;
-   margin: auto;
+ .photo-list{
+   list-style: none;
+   margin: 0;
+   padding: 10px;
+   padding-bottom: 0;
+   li{
+    background-color: #ccc;
+    text-align: center;
+    margin-bottom: 10px;
+    box-shadow: 0 0 9px #999;
+    position: relative;
+    img{
+      width: 100%;
+      vertical-align: middle;
+    }
+    img[lazy="loading"] {
+      width: 40px;
+      height: 300px;
+      margin: auto;
+    }
+    .info{
+      color: white;
+      text-align: left;
+      position: absolute;
+      bottom: 0;
+      background-color: rgba(0, 0, 0 ,0.4);
+      max-height: 84px;
+      .info-title{
+        font-size: 14px;
+      }
+      .info-body{
+        font-size: 13px;
+      }
+    }
+   }
  }
+
 </style>

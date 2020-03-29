@@ -15,11 +15,11 @@ import VueRouter from 'vue-router'
 import router from './router.js'
 import VueResource from 'vue-resource'
 import moment from 'moment'
-
+import VuePreview from 'vue-preview'
 // Vue.use( Lazyload )
 Vue.use(VueResource)
 Vue.use(VueRouter)
-
+Vue.use(VuePreview)
 Vue.filter('dataFormat', function (dataStr, pattern="YYYY-MM-DD HH:mm:ss"){
    return moment(dataStr).format(pattern)
 })

@@ -7,6 +7,9 @@
     </p>
     <hr>
     <!-- 缩略图区域 -->
+    <div class="thumbs">
+      <vue-preview :slides="list" class="imgPrev"></vue-preview>
+  </div>
     <!-- 图片内容区域 -->
     <div class="content" v-html="photos.content"></div>
     <!-- 评论区域 -->
@@ -20,14 +23,16 @@ export default {
   data () {
     return {
       id:this.$route.params.id,
-      photos: [] 
+      photos: {},
+      list: []
     }
   },
   components: {
     'cmt-box':comment 
   },
   created() {
-    this.getPhotoInfo()
+    this.getPhotoInfo(),
+    this.getThumbs()
   },
   methods: {
     getPhotoInfo () {
@@ -40,11 +45,28 @@ export default {
           Toast('获取数据失败')
         }
       })
+    },
+    getThumbs() {
+         this.$http.get('api/getthumimages/' + this.id ).then( result=> {
+         if(result.body.status === 0)
+        {
+            // 循环每个图片数据 补全图片的宽和高
+            result.body.message.forEach(item=> {
+              item.w = 600
+              item.h = 400
+              item.src = item.src;  //大图
+              item.msrc = item.src;  //小图
+            })
+            this.list = result.body.message
+        }else{
+          Toast('获取数据失败')
+        }
+      })
     }
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .photos-container{
   padding: 3px;
   h3{
@@ -63,5 +85,19 @@ export default {
     font-size: 13px;
     line-height: 30px;
   }
+}
+.thumbs{
+.imgPrev{
+.my-gallery{
+figure{
+display: inline-block;
+margin: 8px;
+}
+img{
+width: 100px;
+height: 80px;
+}
+}
+}
 }
 </style>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      border: 1px solid red;
+    }
+    .box1{
+      /* 2； will-change */
+      will-change: transform;
+    }
+    .box2{
+      /* 如果元素在一个独立的图层上面，transform cursor 他们非常优秀 直接到达 最后一步composite */
+      transform: translate3d(0,0,0);
+      /* 1 tranform  */
+      /* 3 backface-visibility */
+    }
+  </style>
+</head>
+<body>
+  <div class="box box1">
+    box1
+  </div>
+  <div class="box box2">
+    box2
+  </div>
+  <script>
+    const box = document.querySelector('.box');
+    setTimeout(() => {
+      box.style.transform = 'translate3d(60px, 0, 0)';
+    }, 3000);
+  </script>
+</body>
+</html>

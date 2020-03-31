@@ -1,52 +1,56 @@
 <template>
   <div class="goods-list">
-    <div class="goods-item">
-      <img src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1584946103.92249512.jpg" alt="">
-      <h1 class="title">小米（MI）小米NOte 16G双网通版</h1>
+    <div class="goods-item" v-for="item in goodslist" :key="item.id">
+      <img :src="item.img_url">
+      <h1 class="title">{{ item.title }}</h1>
       <div class="info">
         <p class="price">
-          <span class="now"> ￥2399</span>
-          <span class="old"> ￥2199</span>
+          <span class="now"> {{ item.sell_price}}</span>
+          <span class="old"> {{ item.market_price}}</span>
         </p>
         <p class="sell">
           <span>热卖中</span>
-          <span>剩余20架</span>
+          <span>剩余{{ item.stock_quantity }}架</span>
         </p>
       </div>
     </div>
-     <div class="goods-item">
-      <img src="https://img.alicdn.com/imgextra/i4/782731205/O1CN01xg9ijO1KlvkkpYngv_!!782731205.jpg_430x430q90.jpg" alt="">
-      <h1 class="title">尼康（NIkon）D3300套机（18-55mm f/3.5-5.6G VRII）（黑色） </h1>
-      <div class="info">
-        <p class="price">
-          <span class="now"> ￥2399</span>
-          <span class="old"> ￥2199</span>
-        </p>
-        <p class="sell">
-          <span>热卖中</span>
-          <span>剩余20架</span>
-        </p>
-      </div>
-    </div>
-    <div class="goods-item">
-      <img src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1584946103.92249512.jpg" alt="">
-      <h1 class="title">小米（MI）小米NOte 16G双网通版</h1>
-      <div class="info">
-        <p class="price">
-          <span class="now"> ￥2399</span>
-          <span class="old"> ￥2199</span>
-        </p>
-        <p class="sell">
-          <span>热卖中</span>
-          <span>剩余20架</span>
-        </p>
-      </div>
-    </div>
+    <mt-button type="danger" size="large" @click="getMore">加载更多</mt-button>
   </div>
 </template>
 <script>
+import { Toast } from 'mint-ui'
+
 export default {
-  
+  data() {
+    return {
+      pageindex:1,
+      goodslist:[]
+    }
+  },
+  created() {
+    this.getGoodsList()
+  },
+  methods: {
+    getGoodsList() {
+      // 获取商品列表
+        this.$http.get("api/getgoods?pageindex=" + this.pageindex).then(result=>{
+          if(result.body.status === 0)
+          {
+            
+            this.goodslist = this.goodslist.concat(result.body.message)
+          }
+          else{
+            Toast('获取内容失败')
+          }
+          
+        })
+    },
+      getMore() {
+    this.pageindex++,
+    this.getGoodsList()
+  }
+  },
+
 }
 </script>
 <style lang="scss" scoped>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=47FQtS6XkphGqmZ5nSEj6WTSTwE8SGaT"></script>
+  <style type="text/css">
+    html,body {
+        height: 100%
+    }
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    #container {
+        width: 700px;
+        height: 700px;
+    }
+</style>
+</head>
+<body>
+  <!-- 1. 展示一个地图 来自百度  -->
+  <!-- emmet html 快捷方式 -->
+  <!-- <div id="map"></div> -->
+  <!-- 容器 地图 在这里显示 -->
+  <div id="container">
+
+  </div>
+  
+  <script>
+    // ,
+
+  // const myLongitude = '115.941261',  //我的经度
+  //   myLatitude = '28.556865';
+  // const kfcLongitude = '115.950531', //肯德基
+  //   kfcLatitude = '28.549066';
+  // window.onload = function() {
+  //   function getLocation() {
+  //     if(navigator.geolocation) {
+  //       navigator.geolocation.getCurrentPosition(showPosition, showError);
+  //     }
+  //   }
+  //   function showPosition(position) {
+  //     console.log(position);
+  //   }
+  //   function showError( err) {
+  //     console.log(err)
+  //   }
+  //   getLocation();
+    // const map = new BMap.Map();
+    // console.log(map, '------------');
+    // const pointA = new BMap.Point(myLongitude, myLatitude);
+    // const pointB = new BMap.Point(kfcLongitude, kfcLatitude);
+    // console.log(map.getDistance(pointA, pointB).toFixed(2) + '米');
+  // }
+  var geolocation = new BMap.Geolocation
+    geolocation.getCurrentPosition(function(position){
+        console.log(position)
+        // 这些都是写死
+        var map = new BMap.Map("container") // container表示显示哪个容器
+        // 把经度纬度传给百度
+        /*40.1691162668,116.6348530780*/
+        var point = new BMap.Point(position.point.lng,position.point.lat)
+        //默认的比例
+        map.centerAndZoom(point, 20)
+        //添加鼠标滚动缩放
+        map.enableScrollWheelZoom()
+        // var myIcon = new BMap.Icon("1.png", new BMap.Size(128, 128));
+        // // 创建标注
+        // var marker = new BMap.Marker(point, {icon: myIcon})
+        // map.addOverlay(marker)
+    });
+  </script>
+</body>
+</html>
+

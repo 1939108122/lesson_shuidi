@@ -50,7 +50,7 @@
   //   myLatitude = '28.556865';
   // const kfcLongitude = '115.950531', //肯德基
   //   kfcLatitude = '28.549066';
-  window.onload = function() {
+  // window.onload = function() {
     function getLocation() {
       if(navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -63,14 +63,16 @@
       console.log(err)
     }
     getLocation();
+  
     // const map = new BMap.Map();
     // console.log(map, '------------');
     // const pointA = new BMap.Point(myLongitude, myLatitude);
     // const pointB = new BMap.Point(kfcLongitude, kfcLatitude);
     // console.log(map.getDistance(pointA, pointB).toFixed(2) + '米');
-  }
+  // }
   
 
   </script>
 </body>
 </html>
+

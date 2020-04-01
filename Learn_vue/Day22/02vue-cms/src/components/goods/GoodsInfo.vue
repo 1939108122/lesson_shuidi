@@ -13,7 +13,15 @@
 		<div class="mui-card-header">页眉</div>
 		<div class="mui-card-content">
 			<div class="mui-card-content-inner">
-						包含页眉页脚的卡片，页眉常用来显示面板标题，页脚用来显示额外信息或支持的操作（比如点赞、评论等）
+        <p class="price">
+          市场价：<del>￥2199</del>&nbsp;&nbsp;销售价：<span class="now_price">￥2099</span>
+        </p>
+        <p>购买数量</p>
+        <p>
+          <mt-button type="primary" size="small">加入购物车</mt-button>
+          <mt-button type="primary" size="small">立即购买</mt-button>
+          <numbox></numbox>
+        </p>
 		  </div>
 		</div>
 	</div>
@@ -33,6 +41,7 @@
 <script>
 import { Toast } from 'mint-ui'
 import swiper from '../subcomponents/swiper.vue'
+import numbox from '../subcomponents/goodsinfo_numbox.vue'
 export default {
   data() {
     return{
@@ -41,7 +50,8 @@ export default {
     }
   },
   components:{
-    swiper
+    swiper,
+    numbox
   },
   props:['lunbotuList'],
   created () {
@@ -70,5 +80,10 @@ export default {
 .goodsinfo-container{
   background-color: #eee;
   overflow: hidden;
+  .now_price{
+    color: red;
+    font-size: 16px;
+    font-weight: bold;
+  }
 }
 </style>

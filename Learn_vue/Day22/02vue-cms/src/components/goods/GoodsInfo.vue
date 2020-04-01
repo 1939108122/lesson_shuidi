@@ -28,13 +28,18 @@
 
   <!-- 商品参数区域 -->
   <div class="mui-card">
-				<div class="mui-card-header">页眉</div>
+				<div class="mui-card-header">商品参数</div>
 				<div class="mui-card-content">
 					<div class="mui-card-content-inner">
-						包含页眉页脚的卡片，页眉常用来显示面板标题，页脚用来显示额外信息或支持的操作（比如点赞、评论等）
+            <p>商品货号：</p>
+            <p>库存情况：</p>
+            <p>上架时间：</p>
 					</div>
 				</div>
-				<div class="mui-card-footer">页脚</div>
+				<div class="mui-card-footer">
+          <mt-button type="primary" size="large" plain>图文介绍</mt-button>
+          <mt-button type="danger" size="large" plain>商品评论</mt-button>
+        </div>
 			</div>
 </div>
 </template>
@@ -84,6 +89,9 @@ export default {
     color: red;
     font-size: 16px;
     font-weight: bold;
+  }
+  .mui-card-footer{
+    flex: block;
   }
 }
 </style>

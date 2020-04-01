@@ -4,7 +4,7 @@
   <div class="mui-card">
 		<div class="mui-card-content">
 			<div class="mui-card-content-inner">
-				<swiper :lunbotuList="lunbotu"></swiper>
+				<swiper :lunbotuList="lunbotu" :isfull="false"></swiper>
 			</div>
 		</div>
 	</div>

@@ -37,8 +37,8 @@
 					</div>
 				</div>
 				<div class="mui-card-footer">
-          <mt-button type="primary" size="large" plain>图文介绍</mt-button>
-          <mt-button type="danger" size="large" plain>商品评论</mt-button>
+          <mt-button type="primary" size="large" plain @click="goDesc(id)">图文介绍</mt-button>
+          <mt-button type="danger" size="large" plain @click="goComment(id)">商品评论</mt-button>
         </div>
 			</div>
 </div>
@@ -91,6 +91,13 @@ export default {
             Toast('获取信息失败！')
           }
       })
+    },
+    goDesc(id) {
+      // 点击使用编程式导航跳转页面
+      this.$router.push({ name: "goodsdesc", params: { id } })
+    },
+     goComment(id) {
+      this.$router.push({ name: "goodscomment", params: { id } })
     },
   }
 }

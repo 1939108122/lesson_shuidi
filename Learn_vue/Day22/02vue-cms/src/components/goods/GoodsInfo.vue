@@ -1,6 +1,14 @@
 <template>
 <div class="goodsinfo-container">
   <!-- 商品轮播图区域 -->
+  <transition
+  @before-enter="beforeEnter"
+  @enter="enter"
+  @after-enter="afterEnter"
+  >
+    <div class="ball" v-show="ballflag"></div>
+  </transition>
+
   <div class="mui-card">
 		<div class="mui-card-content">
 			<div class="mui-card-content-inner">
@@ -19,8 +27,8 @@
         </p>
         <p>购买数量:<numbox></numbox></p>
         <p>
-          <mt-button type="primary" size="small">加入购物车</mt-button>
           <mt-button type="primary" size="small">立即购买</mt-button>
+          <mt-button type="danger" size="small" @click="addshopcar">加入购物车</mt-button>
         </p>
 		  </div>
 		</div>
@@ -52,7 +60,8 @@ export default {
     return{
       id: this.$route.params.id,
       lunbotu:[],
-      goodsinfo:[]
+      goodsinfo:[],
+      ballflag:false
     }
   },
   components:{
@@ -99,6 +108,21 @@ export default {
      goComment(id) {
       this.$router.push({ name: "goodscomment", params: { id } })
     },
+    addshopcar() {
+      this.ballflag = !this.ballflag
+    },
+    beforeEnter(el) {
+      el.style.transform = 'translate(0, 0)'
+    },
+    enter(el,done) {
+      el.offsetWidth
+      el.style.transform = 'translate(86px, 300px)'
+      el.style.transition = 'all 1s cubic-bezier(.4, -0.3, 1, .68)'
+      done()
+    },
+    afterEnter(el) {
+      this.ballflag = !this.ballflag
+    }
   }
 }
 </script>
@@ -116,6 +140,16 @@ export default {
     button{
       margin: 15px 0;
     }
+  }
+  .ball{
+    height: 15px;
+    width: 15px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 99;
+    top: 390px;
+    left: 141px;
   }
 }
 </style>

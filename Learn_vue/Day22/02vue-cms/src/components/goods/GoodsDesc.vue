@@ -44,8 +44,8 @@ export default {
     margin: 15px 0;
   }
   .content{
-     img{
-    width: 100%;
+    img{
+      width: 100%
   }
   }
  

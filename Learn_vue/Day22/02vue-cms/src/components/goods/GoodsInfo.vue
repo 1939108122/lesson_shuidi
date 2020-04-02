@@ -10,17 +10,17 @@
 	</div>
   <!-- 商品购买区域 -->
   <div class="mui-card">
-		<div class="mui-card-header">页眉</div>
+		<div class="mui-card-header">{{ goodsinfo.title }}</div>
 		<div class="mui-card-content">
 			<div class="mui-card-content-inner">
         <p class="price">
-          市场价：<del>￥2199</del>&nbsp;&nbsp;销售价：<span class="now_price">￥2099</span>
+          市场价：<del>{{ goodsinfo.market_price }}</del>&nbsp;&nbsp;
+          销售价：<span class="now_price">{{ goodsinfo.sell_price }}</span>
         </p>
-        <p>购买数量</p>
+        <p>购买数量:<numbox></numbox></p>
         <p>
           <mt-button type="primary" size="small">加入购物车</mt-button>
           <mt-button type="primary" size="small">立即购买</mt-button>
-          <numbox></numbox>
         </p>
 		  </div>
 		</div>
@@ -31,9 +31,9 @@
 				<div class="mui-card-header">商品参数</div>
 				<div class="mui-card-content">
 					<div class="mui-card-content-inner">
-            <p>商品货号：</p>
-            <p>库存情况：</p>
-            <p>上架时间：</p>
+            <p>商品货号：{{ goodsinfo.goods_no }}</p>
+            <p>库存情况：{{ goodsinfo.stock_quantity }}件</p>
+            <p>上架时间：{{ goodsinfo.add_time | dataFormat }}</p>
 					</div>
 				</div>
 				<div class="mui-card-footer">
@@ -51,7 +51,8 @@ export default {
   data() {
     return{
       id: this.$route.params.id,
-      lunbotu:[]
+      lunbotu:[],
+      goodsinfo:[]
     }
   },
   components:{
@@ -60,7 +61,8 @@ export default {
   },
   props:['lunbotuList'],
   created () {
-    this.getLunbotu()  
+    this.getLunbotu(),
+    this.getGoodsInfo()
   },
 
   methods: {
@@ -77,7 +79,19 @@ export default {
           Toast('获取信息失败')
         }
       })
-    }
+    },
+    getGoodsInfo() {
+      this.$http.get('api/goods/getinfo/' + this.id).then(result =>{
+        if (result.body.status === 0)
+          {
+            this.goodsinfo = result.body.message[0]
+          }
+          else
+          {
+            Toast('获取信息失败！')
+          }
+      })
+    },
   }
 }
 </script>
@@ -91,7 +105,10 @@ export default {
     font-weight: bold;
   }
   .mui-card-footer{
-    flex: block;
+    display: block;
+    button{
+      margin: 15px 0;
+    }
   }
 }
 </style>

@@ -25,7 +25,7 @@
           市场价：<del>{{ goodsinfo.market_price }}</del>&nbsp;&nbsp;
           销售价：<span class="now_price">{{ goodsinfo.sell_price }}</span>
         </p>
-        <p>购买数量:<numbox></numbox></p>
+        <p>购买数量:<numbox @getcount="getSelectedCount"></numbox></p>
         <p>
           <mt-button type="primary" size="small">立即购买</mt-button>
           <mt-button type="danger" size="small" @click="addshopcar">加入购物车</mt-button>
@@ -61,7 +61,8 @@ export default {
       id: this.$route.params.id,
       lunbotu:[],
       goodsinfo:[],
-      ballflag:false
+      ballflag:false,
+      selectedCount:1
     }
   },
   components:{
@@ -126,11 +127,14 @@ export default {
       const xDist = badgePosition.left - ballPosition.left
       const yDist = badgePosition.top - ballPosition.top
       el.style.transform = `translate(${xDist}px, ${yDist}px)`
-      el.style.transition = 'all 1s cubic-bezier(.4, -0.3, 1, .68)'
+      el.style.transition = 'all 0.5s cubic-bezier(.4, -0.3, 1, .68)'
       done()
     },
     afterEnter(el) {
       this.ballflag = !this.ballflag
+    },
+    getSelectedCount( count ) {
+      this.selectedCount = count
     }
   }
 }

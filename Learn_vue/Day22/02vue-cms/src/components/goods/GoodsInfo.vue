@@ -6,7 +6,7 @@
   @enter="enter"
   @after-enter="afterEnter"
   >
-    <div class="ball" v-show="ballflag"></div>
+    <div class="ball" v-show="ballflag" ref="ball"></div>
   </transition>
 
   <div class="mui-card">
@@ -115,8 +115,17 @@ export default {
       el.style.transform = 'translate(0, 0)'
     },
     enter(el,done) {
+      
       el.offsetWidth
-      el.style.transform = 'translate(86px, 300px)'
+      // 获取小球在页面中的位置
+      const ballPosition = this.$refs.ball.getBoundingClientRect()
+      // 获取徽标在页面的位置（小小的使用一下DOM ^o^）
+      const badgePosition = document
+      .getElementById('badge')
+      .getBoundingClientRect()
+      const xDist = badgePosition.left - ballPosition.left
+      const yDist = badgePosition.top - ballPosition.top
+      el.style.transform = `translate(${xDist}px, ${yDist}px)`
       el.style.transition = 'all 1s cubic-bezier(.4, -0.3, 1, .68)'
       done()
     },

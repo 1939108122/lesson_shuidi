@@ -1,7 +1,7 @@
 <template>
   <div>
     <input type="button" value="减少" >
-    <input type="button" value="增加">
+    <input type="button" value="增加" @click="add">
     <br>
     <input type="text" v-model="$store.state.count">
   </div>
@@ -14,7 +14,13 @@ export default {
       
     };
   },
-
+  methods: {
+    add() {
+      // 千万不要这么做 不符合vuex设计理念
+      // this.$store.state.count++
+      this.$store.commit('increment')
+    }
+  }
 };
 </script>
 

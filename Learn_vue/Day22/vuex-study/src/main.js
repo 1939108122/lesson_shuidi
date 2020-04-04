@@ -11,7 +11,11 @@ var store = new Vuex.Store({
   state: { //state就相当于组件中的data，专门用来存储数据的
     count:0
   },
-  mutations: {
+  mutations: {  //注意 如果要操作 store 中的 state值, 只能通过调用mutation 提供的方法 才能操作对应的数据 不能直接操作
+    increment(state) {
+      state.count++
+      // 如果组件想要调用 mutations 中的方法 只能使用 this.$store.commit('方法名')
+    }
   },
 })
 

@@ -16,10 +16,12 @@ import router from './router.js'
 import VueResource from 'vue-resource'
 import moment from 'moment'
 import VuePreview from 'vue-preview'
+import Vuex from 'vuex'
 // Vue.use( Lazyload )
 Vue.use(VueResource)
 Vue.use(VueRouter)
 Vue.use(VuePreview)
+Vue.use(Vuex)
 Vue.filter('dataFormat', function (dataStr, pattern="YYYY-MM-DD HH:mm:ss"){
    return moment(dataStr).format(pattern)
 })
@@ -27,11 +29,39 @@ Vue.filter('dataFormat', function (dataStr, pattern="YYYY-MM-DD HH:mm:ss"){
 Vue.http.options.root = 'http://www.liulongbin.top:3005'
 // 全局设置post请求 时候表单数据格式组织形式
 Vue.http.options.emulateJSON = true
+
+var store = new Vuex.Store({
+    state:{
+        car:[]
+    },
+    mutations:{
+        addToCar(state, goodsinfo)
+        {
+            // 如果购物车有该商品，则添加数量，否则加入购物车
+            var flag = false 
+            state.car.some(item=> {
+                if(item.id === goodsinfo.id)
+                {
+                    item.count += parseInt(goodsinfo.count) 
+                    flag = true
+                    return true
+                }
+            })
+            if (!flag)
+            {
+                state.car.push(goodsinfo)
+            }
+        }
+    },
+    getters:{}
+})
+
 var vm = new Vue({
     el: '#app',
     // render:function (createElements) {
     //     return createElements(app)
     // }
     render: c=>c(app),
-    router
+    router,
+    store
 })

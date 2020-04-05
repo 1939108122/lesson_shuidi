@@ -1,13 +1,71 @@
 <template>
-    <div>
-       shopcarcontainer
+  <div class="shopcar-container">
+  <!-- 列表区域 -->
+    <div class="goodslist">
+      <div class="mui-card">
+				<div class="mui-card-content">
+					<div class="mui-card-content-inner">
+						<mt-switch></mt-switch>
+						<img src="http://demo.dtcms.net/upload/201504/20/thumb_201504200119262837.jpg">
+						<div class="info">
+							<h1>小米(MI) 小米Note 16G双网通版</h1>
+							<p>
+								<span class="price">￥2199</span>
+								<numbox></numbox>
+								<a href="#" class="a">删除</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
     </div>
+    <!-- 结算区域 -->
+    <div class="mui-card">
+				<div class="mui-card-content">
+					<div class="mui-card-content-inner">
+						这是一个最简单的卡片视图控件；卡片视图常用来显示完整独立的一段信息，比如一篇文章的预览图、作者信息、点赞数量等
+					</div>
+				</div>
+			</div>
+
+  </div>
 </template>
 <script>
+import numbox from '../subcomponents/shopcar_numbox.vue'
 export default {
-    
+	components: {
+		numbox
+	}
 }
 </script>
-<style>
+<style lang="scss" scoped>
+.shopcar-container{
+	background-color: #eee;
+	overflow: hidden;
+	.goodslist{
+		.mui-card-content-inner{
+			display: flex;
+		}
+		img{
+			width: 60px;
+			height: 60px;
+		}
+		h1{
+			font-size: 13px;
+		}
+		.info{
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			.price{
+				color: red;
+				font-weight: bold;
+			}
+			.a{
+				font-size: 12px;
+			}
 
+		}
+	}
+}
 </style>

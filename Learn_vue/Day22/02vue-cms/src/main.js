@@ -42,7 +42,7 @@ var store = new Vuex.Store({
             state.car.some(item=> {
                 if(item.id === goodsinfo.id)
                 {
-                    item.count += parseInt(goodsinfo.count) 
+                    item.count += parseInt(goodsinfo.count)
                     flag = true
                     return true
                 }
@@ -53,7 +53,15 @@ var store = new Vuex.Store({
             }
         }
     },
-    getters:{}
+    getters:{
+        getAllCount(state){
+            var c = 0
+            state.car.forEach(item=> {
+                c = c + item.count
+            })
+            return c
+        }
+    }
 })
 
 var vm = new Vue({

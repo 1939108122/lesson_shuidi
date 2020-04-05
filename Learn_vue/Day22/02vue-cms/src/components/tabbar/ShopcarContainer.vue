@@ -2,15 +2,15 @@
   <div class="shopcar-container">
   <!-- 列表区域 -->
     <div class="goodslist">
-      <div class="mui-card">
+      <div class="mui-card" v-for="item in goodslist" :key="item.id">
 				<div class="mui-card-content">
 					<div class="mui-card-content-inner">
 						<mt-switch></mt-switch>
-						<img src="http://demo.dtcms.net/upload/201504/20/thumb_201504200119262837.jpg">
+						<img :src="item.thumb_path">
 						<div class="info">
-							<h1>小米(MI) 小米Note 16G双网通版</h1>
+							<h1>{{ item.title }}</h1>
 							<p>
-								<span class="price">￥2199</span>
+								<span class="price">{{ item.sell_price }}</span>
 								<numbox></numbox>
 								<a href="#" class="a">删除</a>
 							</p>
@@ -32,9 +32,38 @@
 </template>
 <script>
 import numbox from '../subcomponents/shopcar_numbox.vue'
+import { Toast } from 'mint-ui'
 export default {
 	components: {
 		numbox
+	},
+	data(){ 
+		return {
+			goodslist: []
+		}
+	},
+	created() {
+		this.getGoodsList()
+	},
+	methods: {
+		getGoodsList() {
+			var idArr = []
+			this.$store.state.car.forEach(item=> idArr.push(item.id) )
+			// 购物车没有商品 则返回 不许请求接口要不然会报错
+			if(idArr.length <=0)
+			{
+				return;
+			}
+			this.$http.get('api/goods/getshopcarlist/' + idArr.join(',')).then(result=> {
+				if (result.body.status === 0)
+				{
+					this.goodslist = result.body.message
+				}
+				else{
+					Toast('获取信息失败！')
+				} 
+			})
+		}
 	}
 }
 </script>

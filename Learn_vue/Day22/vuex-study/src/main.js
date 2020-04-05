@@ -15,8 +15,18 @@ var store = new Vuex.Store({
     increment(state) {
       state.count++
       // 如果组件想要调用 mutations 中的方法 只能使用 this.$store.commit('方法名')
+    },
+    substrut(state, obj) {
+      // mutation 的参数最多两个 其中参数一是 state状态， 参数二： 通过commit提交过来的参数
+      state.count = state.count -(obj.c + obj.d)
     }
   },
+  getters: {
+    getCount: function (state)
+    {
+      return '当前数量值为：' + state.count
+    }
+  }
 })
 
 

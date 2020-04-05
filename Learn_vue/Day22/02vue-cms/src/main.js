@@ -30,9 +30,11 @@ Vue.http.options.root = 'http://www.liulongbin.top:3005'
 // 全局设置post请求 时候表单数据格式组织形式
 Vue.http.options.emulateJSON = true
 
+var car = JSON.parse( localStorage.getItem('car') || '[]' )
+
 var store = new Vuex.Store({
     state:{
-        car:[]
+        car:car
     },
     mutations:{
         addToCar(state, goodsinfo)
@@ -51,6 +53,8 @@ var store = new Vuex.Store({
             {
                 state.car.push(goodsinfo)
             }
+            // 当更新 car之后， 把car数组存储到本地的 localStorage中去
+            localStorage.setItem('car', JSON.stringify(state.car))
         }
     },
     getters:{

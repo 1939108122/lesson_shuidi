@@ -3,7 +3,11 @@
         <!-- 顶部 header 区域 -->
         <!-- 中间的路由区域 -->
         <!-- 底部的tabBar区域 -->
-        <mt-header fixed title="kk的项目"></mt-header>
+        <mt-header fixed title="kk的项目">
+					<span slot="left" @click="goBack" v-show="flag">
+						<mt-button icon="back">返回</mt-button>
+					</span>
+				</mt-header>
 		<transition>
 			<router-view></router-view>
 		</transition>
@@ -32,7 +36,32 @@
 <script>
 
 export default {
-
+	data() {
+		return {
+			flag:false
+		}
+	},
+	methods: {
+		goBack() {
+			this.$router.go(-1)
+		}
+	},
+	created() {
+		this.flag = this.$route.path === '/home' ? false:true
+	},
+	watch:{
+		"$route.path": function(newVal)
+		{
+			if (newVal === '/home')
+			{
+				this.flag = false
+			}
+			else
+			{
+				this.flag = true
+			}
+		}
+	}
 }
 </script>
 <style lang="scss" scoped>

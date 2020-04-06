@@ -11,7 +11,7 @@
 							<h1>{{ item.title }}</h1>
 							<p>
 								<span class="price">{{ item.sell_price }}</span>
-								<numbox :initcount="$store.getters.getCount[item.id]"></numbox>
+								<numbox :initcount="$store.getters.getCount[item.id]" :goodsid="item.id"></numbox>
 								<a href="#" class="a">删除</a>
 							</p>
 						</div>

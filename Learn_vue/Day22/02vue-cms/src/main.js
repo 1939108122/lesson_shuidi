@@ -64,8 +64,15 @@ var store = new Vuex.Store({
                 c = c + item.count
             })
             return c
+        },
+        getCount(state) {
+            var o = {}
+            state.car.forEach(item=>{
+              o[item.id] = item.count
+            })
+            return o
         }
-    }
+    },
 })
 
 var vm = new Vue({

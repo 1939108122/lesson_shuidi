@@ -66,7 +66,19 @@ var store = new Vuex.Store({
             })
             // 当修改完数量， 把最新的购物车数据保存到本地存储中
             localStorage.setItem('car', JSON.stringify(state.car))
+        },
+        removeFromCar (state, id)
+        {
+            state.car.some((item, i) => {
+                if(item.id === id)
+                {
+                    state.car.splice(i, 1)
+                    return true
+                }
+            })
+            localStorage.setItem('car', JSON.stringify(state.car))
         }
+        
     },
     getters:{
         getAllCount(state){

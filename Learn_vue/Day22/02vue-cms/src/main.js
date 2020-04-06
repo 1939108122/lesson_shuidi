@@ -77,6 +77,18 @@ var store = new Vuex.Store({
                 }
             })
             localStorage.setItem('car', JSON.stringify(state.car))
+        },
+        updateGoodsSelected(state,info)
+        {
+            state.car.some(item=>{
+                if(item.id === info.id)
+                {
+                    item.selected  = info.selected
+                }
+                return true
+            })
+            // 把最新的购物车商品状态保存到store
+            localStorage.setItem('car', JSON.stringify(state.car))
         }
         
     },
@@ -94,7 +106,14 @@ var store = new Vuex.Store({
               o[item.id] = item.count
             })
             return o
-        }
+        },
+        getSelected(state) {
+            var o = {}
+            state.car.forEach(item=>{
+              o[item.id] = item.selected 
+            })
+            return o
+        },
     },
 })
 

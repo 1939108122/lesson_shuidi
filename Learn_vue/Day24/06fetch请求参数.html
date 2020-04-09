@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 通过地址传参，默认为get方式(传统URL)
+    //   fetch('http://localhost:3000/books?id=123', {
+
+    //   })
+    //   .then(function (data){
+    //   return data.text()
+    //   //text方法是fetch API的一部分 他返回一个Promise实例对象 用于获取后台返回的数据 
+    // }).then(function (data) {
+    //   // 注意这里才是得到的最终数据
+    //   console.log(data)
+    // })
+      // 第二种方法（Restful）
+//     fetch('http://localhost:3000/books/456', {
+//       method:'get'
+// })
+// .then(function (data){
+// return data.text()
+// //text方法是fetch API的一部分 他返回一个Promise实例对象 用于获取后台返回的数据 
+// }).then(function (data) {
+// // 注意这里才是得到的最终数据
+// console.log(data)
+// })
+
+fetch('http://localhost:3000/books/789', {
+      method:'delete'
+})
+.then(function (data){
+return data.text()
+//text方法是fetch API的一部分 他返回一个Promise实例对象 用于获取后台返回的数据 
+}).then(function (data) {
+// 注意这里才是得到的最终数据
+console.log(data)
+})
+  </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    fetch('http://localhost:3000/fdata').then(function (data){
+      return data.text()
+      //text方法是fetch API的一部分 他返回一个Promise实例对象 用于获取后台返回的数据 
+    }).then(function (data) {
+      // 注意这里才是得到的最终数据
+      console.log(data)
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script text="text/javascript" src="js/axios.js"></script>
+  <script text="text/javascript">
+    // axios.post('http://localhost:3000/axios',{
+    //   uname:'lisi',
+    //   pwd:123
+    // }).then(function(ret) {
+
+    //   console.log(ret.data)
+    // })
+    axios.put('http://localhost:3000/axios/123',{
+      uname:'lisi',
+      pwd:123
+    }).then(function(ret) {
+
+      console.log(ret.data)
+    })
+  </script>
+</body>
+</html>

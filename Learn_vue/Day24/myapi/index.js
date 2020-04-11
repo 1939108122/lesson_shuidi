@@ -17,7 +17,7 @@ app.all('*', function (req, res, next) {
   next();
 });
 app.get('/async1', (req, res) => {
-  res.send('hello1')
+  res.send('hello')
 })
 app.get('/async2', (req, res) => {
   if(req.query.info == 'hello') {

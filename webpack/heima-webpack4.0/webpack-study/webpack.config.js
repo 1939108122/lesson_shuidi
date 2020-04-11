@@ -4,9 +4,10 @@ const htmlplugin =  new HtmlWebpackPlugin({
   template:'./src/index.html',
   filename:'index.html'
 })
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 module.exports = {
   mode: 'development',
-  plugins:[htmlplugin],
+  plugins:[htmlplugin, new VueLoaderPlugin()],
   entry: path.join(__dirname, './src/index.js'),
   output: {
     path: path.join(__dirname, './dist'),
@@ -19,7 +20,8 @@ module.exports = {
         { test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader' ] },
         { test:/\.(jpg|png|gif|bmp|jpeg)$/, use: 'url-loader?limit=17800&name=[hash:8]-[name].[ext]'},
         // { test: /\.(ttf|eot|svg|woff|woff2)$/, use: 'url-loader' }, //处理字体文件的loader 
-        { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ } // exclude排除node_modules文件下编译好的js文件，提高执行效率
+        { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ }, // exclude排除node_modules文件下编译好的js文件，提高执行效率
+        { test: /\.vue$/, use: 'vue-loader'}
     ]
 },
 }

@@ -5,22 +5,24 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const basePath = __dirname;
 
 module.exports = {
- context: path.join(basePath, 'src'),
- resolve: {
-   extensions: ['.js', '.ts'],
+ context: path.join(basePath, 'src'), // 上下文环境 src 
+ resolve: { // 帮处理那些静态文件
+   extensions: ['.js', '.ts'], // ts typescript js  .styl .sacc
  },
  entry: {
-   app: './index.ts',
-   vendorStyles: [
+   app: './index.ts', // webpack 打包入口可以多个
+   vendorStyles: [ // bootstrap css 框架 vue  业务代码在改变, 但是框架要
+    // 被打包， 但是不会被修改， 单独打包
      '../node_modules/bootstrap/dist/css/bootstrap.css',
    ],
  },
  output: {
    path: path.join(basePath, 'dist'),
-   filename: '[name].js',
+   filename: '[name].[hash].js', // app hash 
  },
  module: {
    rules: [
+    //  .ts -> .js -> babel
      {
        test: /\.ts$/,
        exclude: /node_modules/,
@@ -33,18 +35,18 @@ module.exports = {
        test: /\.css$/,
        use: [MiniCssExtractPlugin.loader, 'css-loader'],
      },
-     {
-       test: /\.(png|jpg|gif|svg)$/,
-       loader: 'file-loader',
-       options: {
-         name: 'assets/img/[name].[ext]?[hash]',
-       },
-     },
+    //  {
+    //    test: /\.(png|jpg|gif|svg)$/, // 压缩 base64
+    //    loader: 'file-loader',
+    //    options: {
+    //      name: 'assets/img/[name].[ext]?[hash]',
+    //    },
+    //  },
    ],
  },
  // For development https://webpack.js.org/configuration/devtool/#for-development
  devtool: 'inline-source-map',
- devServer: {
+ devServer: { // webapck-dev-server 
    port: 8080,
    noInfo: true,
  },

@@ -21,3 +21,8 @@ webpack 编译  nginx docker  阿里云 build  node
   entry 可以有多个打包的入口吗？ 为什么
   vendor 库  vue.js  vuex vue-router 
   提升了编译速度， 同时保障及改善了用户的浏览体验  缓存
+5. tsx 再工作流是如何完成编译支持的
+  resolve.extendsions tsx -> module, test .tsx?-> awesome-typescript-loader -> tsconfig.json jsx-> react -> 
+  babel 
+  jSX 良好表现的template 语法
+- dist 目录不删除再生成？ 历史版本都留下， 利于回滚代码

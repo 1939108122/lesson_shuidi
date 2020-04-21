@@ -6,6 +6,11 @@ class Demo1 extends Component {
     super(props)
     this.handleClick = this.handleClick.bind(this)
   }
+  // 组件第一次存在dom中， 函数是不会执行
+  // 修改渲染的时候执行函数
+  UNSAFE_componentWillReceiveProps() {
+    console.log('child--UNSAFE_componentWillReceiveProps')
+  }
   render() { 
     return ( 
     <li onClick={this.handleClick}>{this.props.name}为你服务{this.props.son}</li>

@@ -10,7 +10,24 @@ class Xiaojiejie extends Component {
       list:['精油推背', '足底按摩']
     }
   }
+  UNSAFE_componentWillMount() {
+    console.log('compomentwillmount -----')
+  }
+  componentDidMount() {
+    console.log('compomentdidmount -----')
+  }
+  shouldComponentUpdate() {
+    console.log('1-shouldComponentUpdate')
+    return true
+  }
+  componentWillUpdate() {
+    console.log('2-componentWillUpdate')
+  }
+  componentDidUpdate() {
+    console.log('4-componentDidUpdate')
+  }
   render() {
+    console.log('3-render')
     return (
      <Fragment>
         <div>

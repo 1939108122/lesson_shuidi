@@ -15,10 +15,13 @@ class Xiaojiejie extends Component {
      <Fragment>
         <div>
           <label htmlFor="focus">增加服务</label>
-          <input  id="focus" value={ this.state.inputValue } onChange={ this.inputChange.bind(this) }/>
+          <input  id="focus" 
+          value={ this.state.inputValue } 
+          onChange={ this.inputChange.bind(this) }
+          ref = {(input) => { this.input = input }}/>
           <button onClick={this.addList}>增加服务</button>
         </div>
-        <ul>
+        <ul ref={(ul) =>{this.ul = ul}}>
           {
             this.state.list.map((item, index) =>{
             return (
@@ -32,9 +35,9 @@ class Xiaojiejie extends Component {
         </Fragment>
     )
   }
-  inputChange(e) {
+  inputChange() {
     this.setState({
-      inputValue: e.target.value
+      inputValue: this.input.value
     })
   }
   // 增加列表服务
@@ -42,6 +45,8 @@ class Xiaojiejie extends Component {
     this.setState({
       list:[...this.state.list, this.state.inputValue],
       inputValue:''
+    }, () => {
+      console.log(this.ul.querySelectorAll('li').length)
     })
   }
   // 删除列表项

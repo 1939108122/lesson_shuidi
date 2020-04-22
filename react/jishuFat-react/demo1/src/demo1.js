@@ -8,8 +8,20 @@ class Demo1 extends Component {
   }
   // 组件第一次存在dom中， 函数是不会执行
   // 修改渲染的时候执行函数
-  UNSAFE_componentWillReceiveProps() {
-    console.log('child--UNSAFE_componentWillReceiveProps')
+  // UNSAFE_componentWillReceiveProps() {
+  //   console.log('child--UNSAFE_componentWillReceiveProps')
+  // }
+  // componentWillUnmount() {
+  //   console.log('componentWillUnmount')  //删除组件执行
+  // }
+  shouldComponentUpdate(nextProps, nexState)
+  {
+    if(nextProps.son !== this.props.son)
+    {
+      return true
+    }else{
+      return false
+    }
   }
   render() { 
     return ( 

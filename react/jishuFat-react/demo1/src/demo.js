@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import Demo1 from './demo1'
+import axios from 'axios'
+import Boss from './boss'
 import './style.css'
 
 class Xiaojiejie extends Component {
@@ -9,6 +11,13 @@ class Xiaojiejie extends Component {
       inputValue: '',
       list:['精油推背', '足底按摩']
     }
+  }
+  componentDidMount() {
+    axios.post('https://web-api.juejin.im/v3/web/wbbr/bgeda')
+    .then((res)=> {console.log('axios获取数据成功！'+ JSON.stringify(res))})
+    .catch((error)=> {
+      console.log('获取数据失败' + error)
+    })
   }
   // UNSAFE_componentWillMount() {
   //   console.log('compomentwillmount -----')
@@ -49,6 +58,7 @@ class Xiaojiejie extends Component {
             })
           }
         </ul>
+        <Boss/>
         </Fragment>
     )
   }

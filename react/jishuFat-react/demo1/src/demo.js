@@ -3,7 +3,7 @@ import Demo1 from './demo1'
 import axios from 'axios'
 import Boss from './boss'
 import './style.css'
-
+import { CSSTransition, TransitionGroup } from 'react-transition-group' 
 class Xiaojiejie extends Component {
   constructor(props) {
     super(props)
@@ -48,15 +48,23 @@ class Xiaojiejie extends Component {
           <button onClick={this.addList}>增加服务</button>
         </div>
         <ul ref={(ul) =>{this.ul = ul}}>
+          <TransitionGroup>
           {
             this.state.list.map((item, index) =>{
             return (
+              <CSSTransition
+              timeout={2000}
+              classNames='boss=text'
+              unmountOnExit
+              appear={true}>
               <Demo1 key={index+item}
               son={item} index={index}
               deleteItem={this.deleteItem.bind(this)}/>
+              </CSSTransition>
             )
             })
           }
+         </TransitionGroup>
         </ul>
         <Boss/>
         </Fragment>

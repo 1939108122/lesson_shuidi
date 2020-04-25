@@ -6,13 +6,15 @@
   <title>Document</title>
 </head>
 <body>
-  <script src=""></script>
+  <script src="./axios.js"></script>
   <script>
-    function Test () {
-      axios.get('https://www.easy-mock.com/mock/5ea3032c560b124432011d37/test/test').then(function(res){
-        console.log(res)
-      })
+    async function Test () {
+      const {data: res} = await axios.get('http://rap2.taobao.org:38080/app/mock/252084/get/test')
+      return res
     }
+    Test()
+    .then(function(res){console.log(res)})
+    .catch(function(err){console.log(err)})
   </script>
 </body>
 </html>

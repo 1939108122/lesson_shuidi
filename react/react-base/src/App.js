@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
 class Header extends React.Component {
@@ -49,7 +49,7 @@ function App() {
   const [ listState, setListState ] = useState(list)
   let hasData = list.length > 0;
   // 列表渲染，jsx 会自动展开数组
-  let arr = [ <li>0</li>, <li>1</li>, <li>2</li> ];
+  // let arr = [ <li>0</li>, <li>1</li>, <li>2</li> ];
   const listEle = listState.map((person, i) => {
     // key 区分 我们前后两次的节点 可不可以复用（要不要销毁在重建）
     return (<li key={i}>

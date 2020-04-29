@@ -6,7 +6,7 @@ function isAnimal(target) {
   // 2：修改 原始的类
   // 没有对 target  造成破坏  target = class Cat{}
   target.isAnimal = function() {
-    console.log('yes');
+    console.log('yes1');
   }
   
   // 
@@ -15,21 +15,23 @@ function isAnimal(target) {
 function isThing(target) {
   console.log(target);
   target.isThing = function() {
-    console.log('yes');
+    console.log('yes2');
   }
   // return target;
 }
 function listenCall(target, name, descriptor) {
   // 1： 拿到原始的 work  descriptor.value
   // descriptor.value = function work(params) {
-    
+    console.log(target)
+    console.log(descriptor.value)
   // }
-  const origin = descriptor.value;
+  // const origin = descriptor.value;
+  // console.log(origin)
   // 2: 修改
   // work say
   descriptor.value = function() {
     console.log('我监听到你发生调用')
-    origin();
+    // origin();
   }
 }
 @isThing
@@ -58,7 +60,7 @@ class Man {
 // 实例化
 let boy = new Man();
 boy.say()
-Man.isMan();
+// Man.isMan();
 Man.isAnimal();
 Man.isThing();
 boy.work();

@@ -18,7 +18,7 @@ function isAnimal(target) {
   // 没有对 target  造成破坏  target = class Cat{}
 
   target.isAnimal = function () {
-    console.log('yes');
+    console.log('yes1');
   }; // 
   // return target;
 
@@ -28,7 +28,7 @@ function isThing(target) {
   console.log(target);
 
   target.isThing = function () {
-    console.log('yes');
+    console.log('yes2');
   }; // return target;
 
 }
@@ -36,13 +36,15 @@ function isThing(target) {
 function listenCall(target, name, descriptor) {
   // 1： 拿到原始的 work  descriptor.value
   // descriptor.value = function work(params) {
-  // }
-  var origin = descriptor.value; // 2: 修改
+  console.log(target);
+  console.log(descriptor.value); // }
+  // const origin = descriptor.value;
+  // console.log(origin)
+  // 2: 修改
   // work say
 
   descriptor.value = function () {
-    console.log('我监听到你发生调用');
-    origin();
+    console.log('我监听到你发生调用'); // origin();
   };
 }
 
@@ -81,8 +83,8 @@ var Man = isThing(_class = isAnimal(_class = (_class2 = /*#__PURE__*/function ()
 
 
 var boy = new Man();
-boy.say();
-Man.isMan();
+boy.say(); // Man.isMan();
+
 Man.isAnimal();
 Man.isThing();
 boy.work();

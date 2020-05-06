@@ -1,0 +1,10 @@
+<script>
+  function test(f1) {
+    setTimeout(()=>{
+      f1('hello,world!')
+    },3000)
+  }
+  test(function(val) {
+    console.log(val)
+  })
+</script>

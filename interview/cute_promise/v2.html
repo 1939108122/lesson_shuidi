@@ -31,6 +31,7 @@
   }
   CutePromise.prototype.then = function(onFulfilled, onRejected) {
     let self = this;
+    
     if (self.status === 'fulfilled') {
       onFulfilled(self.value);
     } else if (self.status === 'rejected') {
@@ -46,7 +47,7 @@
     // resolve(6666);
     // 成功时候的值 通过 resolve 传给
     // reject('err')
-    setTimeout(() => {
+    setTimeout(() => {  //异步处理过程
       // 2000 => fulfilled
       resolve(6666);
     }, 2000)

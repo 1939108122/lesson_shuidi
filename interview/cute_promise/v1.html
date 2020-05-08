@@ -27,14 +27,19 @@
     }
   }
   new CutePromise((resolve, reject) => {
-    // resolve(6666);
+    // resolve(6666); //这是无异步处理过程  
     // 成功时候的值 通过 resolve 传给
-    reject('err')
-    // setTimeout(() => {
-    //   resolve(6666);
-    // }, 2000)
+    // reject('err')
+
+    
+    // 如果这样的话，还没等到两秒执行就先执行then 发现status还没改变 仍然为 pending, 值也没有传递自然val输不出来
+    setTimeout(() => {   
+      resolve(6666);
+    }, 2000)
   })
   .then((val) => {
     console.log(val);
+  }, (err) => {
+    console.log(err)
   })
 </script>

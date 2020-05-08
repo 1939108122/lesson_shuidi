@@ -1,10 +1,13 @@
 <script>
-  function test(f1) {
+  function test(fn) {
     setTimeout(()=>{
-      f1('hello,world!')
+      fn('hello,world!')
     },3000)
   }
-  test(function(val) {
+
+  test(function(val) { //回调函数
     console.log(val)
   })
 </script>
+
+<!-- promise基于回调实现的 -->

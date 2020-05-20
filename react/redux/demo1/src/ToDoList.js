@@ -1,27 +1,48 @@
 import React, { Component } from 'react';
-import 'antd/dist/antd.css'
-import { Input, Button, List} from 'antd'
-const data =[
-  '早八点',
-  '早九点',
-  '早十点'
-]
+import store from './store'
+import { changeInputAction, addInputItem, deleteInputItem } from './store/actionCreators'
+import ToDoListUI from './TodoListUI'
+
 class ToDoList extends Component {
-  state = {  }
-  render() { 
+  constructor(props) {
+    super(props)
+    // console.log(store.getState())
+    this.state = store.getState()
+    this.changeInputValue  = this.changeInputValue.bind(this)
+    this.storeChange = this.storeChange.bind(this)
+    this.addInputValue = this.addInputValue.bind(this)
+    this.deleteItem = this.deleteItem.bind(this)
+    store.subscribe(this.storeChange)  //订阅的意思是 store的inputValue改变了，但是组件的input没有改变，需要进行同步
+  }
+  render() {
     return ( 
-      <div style={{ margin:'10px'}}>
-        <div>
-          <Input placeholder="请输入内容" style={{ width: '250px', marginRight:"10px"}}/>
-          <Button type="primary">增加</Button>
-        </div>
-        <div  style={{margin: '10px', width:'300px'}}>
-          <List bordered dataSource={data} 
-          renderItem={item=>(<List.Item>{ item }</List.Item>)} />
-        </div>
-      </div>
+      <ToDoListUI
+      inputValue={ this.state.inputValue }
+      changeInputValue={ this.changeInputValue }
+      addInputValue={ this.addInputValue }
+      list={ this.state.list }
+      deleteItem={ this.deleteItem }
+      />
      );
   }
-}
+  changeInputValue(e) {
+    let action = changeInputAction(e.target.value)
+    store.dispatch(action)
+    // console.log(this.state) 
+  }
+  storeChange() {
+    this.setState(store.getState())
+  }
+  addInputValue() {
+    let action = addInputItem()
+
+    store.dispatch(action)
+  }
+  deleteItem( index )
+  {
+    let action = deleteInputItem(index)
+    store.dispatch(action)
+  }
+ }
  
 export default ToDoList;

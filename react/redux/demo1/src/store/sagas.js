@@ -1,13 +1,13 @@
 import { takeEvery, put } from 'redux-saga/effects'
 import { GET_MY_LIST } from './actionTypes'
-import { getList } from './actionTypes'
+import { getList } from './actionCreators'
 import axios from 'axios'
 
 function* mySagas() {
-  yield takeEvery(GET_MY_LIST, getList )
+  yield takeEvery(GET_MY_LIST, getList1 )
 }
 
-function* getList () {
+function* getList1 () {
   // axios.get('http://rap2.taobao.org:38080/app/mock/252084/get/redux')
   // .then((res) => {
   //   const data = res.data
@@ -15,7 +15,7 @@ function* getList () {
   //   put(action)
   // })
 
-  const { data: res } = axios.get('http://rap2.taobao.org:38080/app/mock/252084/get/redux')
+  const { data: res } =  yield axios.get('http://rap2.taobao.org:38080/app/mock/252084/get/redux')
   const action = getList(res)
   yield put(action)
 }

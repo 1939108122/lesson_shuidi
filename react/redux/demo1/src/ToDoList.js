@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import store from './store'
-import { getMyListAction, changeInputAction, addInputItem, deleteInputItem, getTodoList } from './store/actionCreators'
+import { getMyListAction, changeInputAction, addInputItem, deleteInputItem } from './store/actionCreators'
 import ToDoListUI from './TodoListUI'
 
 class ToDoList extends Component {

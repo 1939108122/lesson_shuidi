@@ -1,3 +1,0 @@
-var findTheLongestSubstring = function(s) {
-
-};

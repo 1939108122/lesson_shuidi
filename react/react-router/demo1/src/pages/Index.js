@@ -10,10 +10,12 @@ class Index extends Component {
         {cid: 789, title: '三分绝杀'}
       ]
     }
+    this.props.history.push('/home')
   }
   render() { 
     return (
       <div>
+        {/* <Redirect to='/home' /> */}
         <h2>
           凯里欧文
         </h2>

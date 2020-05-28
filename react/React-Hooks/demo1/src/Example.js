@@ -29,8 +29,8 @@ function Example () {
 
   // 上面这一行相当于下面这份代码
   // const _useState = useState(0)
-  // const count = useState[0]
-  // const setCount = useState[1]
+  // const count = _useState[0]
+  // const setCount = _useState[1]
   useEffect(()=> {
     console.log(`useEffect => you clicked ${ count } times`)
     return () => {

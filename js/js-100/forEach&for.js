@@ -14,11 +14,11 @@
 
 // a();
 
-// function b() {
-//   console.time();
-//   arr.forEach(item => { console.log(2) })
-//   console.timeEnd();
-// }
-// b();
+function b() {
+  console.time();
+  arr.forEach(item => { console.log(2) })
+  console.timeEnd();
+}
+b();
 
 

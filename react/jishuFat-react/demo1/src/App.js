@@ -5,7 +5,7 @@ import React, {Component} from 'react'
 class App extends Component{
   render() {
     return (
-        // JSX  javascript 和 XML
+        // JSX  javascript 和 HTML
         <ul className="my-list">
           <li>{false? 'abc':132}</li>
           <li>def</li>

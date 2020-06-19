@@ -71,6 +71,7 @@ class Xiaojiejie extends Component {
     )
   }
   inputChange() {
+    console.log(this)
     this.setState({
       inputValue: this.input.value
     })

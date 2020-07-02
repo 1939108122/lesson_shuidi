@@ -1,0 +1,10 @@
+<script>
+  const targetB = window.open('./b.html');
+  setTimeout(() => {
+    targetB.postMessage('this is from a', 'http://127.0.0.1:5500')
+  }, 2000);
+  window.onmessage = function(e) {
+    console.log('a.html receive', e);
+    // 
+  }
+</script>

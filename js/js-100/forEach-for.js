@@ -1,6 +1,6 @@
 //  MVVM 数据劫持
-// var arr = [1];
-// arr[10000] = 1;
+var arr = [1];
+arr[10000] = 1;
 
 
 // function a() {

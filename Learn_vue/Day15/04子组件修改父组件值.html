@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../Day1/code/lib/vue-2.4.0.js"></script>
+</head>
+<body>
+  <div id="app">
+    <span>{{ msg }}</span>
+    <com1 @func="changeFather" :parent="msg"></com1>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        msg: '父组件的属性'
+      },
+      methods:{
+        changeFather(params){
+          this.msg = params
+        }
+      },
+      components: {
+        com1:{
+          data: {
+            son:'son'
+          },
+          template:'<div><h3>这是子组件----{{parent}}</h3><button @click="changeData">abc</botton></div>',
+          props: ['parent'],
+          methods: {
+            changeData() {
+              this.$emit('func', '儿子改属性')
+            }
+          }
+        }
+      }
+
+    })
+  </script>
+</body>
+</html>
